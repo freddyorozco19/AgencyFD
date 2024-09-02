@@ -64,31 +64,7 @@ df['Descargar'] = df.apply(lambda row: get_download_link(row), axis=1)
 st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 # Estilo CSS para mejorar la apariencia de la tabla
-st.markdown("""
-<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-th {
-    background-color: #f2f2f2;
-}
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-tr:hover {
-    background-color: #f5f5f5;
-}
-a {
-    text-decoration: none;
-}
-</style>
-""", unsafe_allow_html=True)
+
 st.write("AA")
 # Botón para descargar todo el DataFrame
 st.write("Descargar todo el DataFrame:")
