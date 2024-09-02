@@ -89,7 +89,7 @@ a {
 }
 </style>
 """, unsafe_allow_html=True)
-
+st.write("AA")
 # Botón para descargar todo el DataFrame
 st.write("Descargar todo el DataFrame:")
 full_excel_data = to_excel(df)
