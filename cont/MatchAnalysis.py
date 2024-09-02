@@ -32,4 +32,4 @@ from matplotlib.patches import Rectangle
 import math
 import io
 
-st.header("MATCH ANALYSIS")
+st.header("MA")
