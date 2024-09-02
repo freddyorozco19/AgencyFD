@@ -50,19 +50,46 @@ def to_excel(df):
     processed_data = output.getvalue()
     return processed_data
 
-# Crear columnas para organizar los botones
-col1, col2, col3 = st.columns([1, 2, 1])
+def get_table_download_link(df, filename):
+    """Genera un link para descargar los datos en formato Excel"""
+    val = to_excel(df)
+    b64 = base64.b64encode(val).decode()
+    return f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}.xlsx">Descargar</a>'
 
-with col2:
-    st.write("Botones de descarga:")
-    for index, row in df.iterrows():
-        excel_data = to_excel(row)
-        st.download_button(
-            label=f"Descargar datos de {row['Nombre']}",
-            data=excel_data,
-            file_name=f"{row['Nombre']}_datos.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            key=f"download_{index}"
-        )
+# Generar la tabla HTML con botones de descarga integrados
+table_html = "<table>"
+table_html += "<tr><th>Nombre</th><th>Edad</th><th>Ciudad</th><th>Salario</th><th>Descargar</th></tr>"
 
-st.dataframe(df)
+for index, row in df.iterrows():
+    table_html += "<tr>"
+    for col in df.columns:
+        table_html += f"<td>{row[col]}</td>"
+    
+    # Agregar el botón de descarga como un enlace en la última columna
+    download_link = get_table_download_link(pd.DataFrame([row]), f"{row['Nombre']}_datos")
+    table_html += f"<td>{download_link}</td>"
+    
+    table_html += "</tr>"
+
+table_html += "</table>"
+
+# Estilo CSS para la tabla
+st.markdown("""
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Mostrar la tabla HTML
+st.markdown(table_html, unsafe_allow_html=True)
