@@ -88,3 +88,24 @@ st.download_button(
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     key="download_all"
 )
+
+
+df = pd.DataFrame(
+        {"Site": "DuckDuckGo Google Bing".split(),
+        "URL": "https://duckduckgo.com/ https://www.google.com/ https://www.bing.com/".split()}
+    )
+
+gb = GridOptionsBuilder.from_dataframe(df)
+
+gb.configure_column("URL",
+                    headerName="URL",
+                    cellRenderer=JsCode(
+                        """
+                        function(params) {
+                            return '<a href=' + params.value + '> 🖱️ </a>'
+                            }
+                        """))
+
+gridOptions = gb.build()
+
+AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
