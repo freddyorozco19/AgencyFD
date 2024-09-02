@@ -21,4 +21,4 @@ openpyxl
 xlsxwriter
 scikit-learn
 seaborn
-st_aggrid
+streamlit-aggrid
