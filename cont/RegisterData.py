@@ -43,12 +43,12 @@ df = pd.DataFrame({
 })
 
 # Función para crear el contenido del archivo Excel para una fila
-def to_excel(row):
+def to_excel(df):
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        pd.DataFrame([row]).to_excel(writer, index=False, sheet_name='Sheet1')
-        writer.save()
-    return output.getvalue()
+        df.to_excel(writer, index=False, sheet_name='Sheet1')
+    processed_data = output.getvalue()
+    return processed_data
 
 # Función para generar el botón de descarga
 def get_download_button(row):
