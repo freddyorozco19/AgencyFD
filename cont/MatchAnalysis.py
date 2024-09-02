@@ -35,4 +35,5 @@ import io
 st.header("MA")
 
 df = pd.read_excel('Data/Players_Gral.xlsx')
+df['Categoria'] = df['Categoria'].astype(str)
 st.dataframe(df)
