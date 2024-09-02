@@ -50,18 +50,19 @@ def to_excel(df):
     processed_data = output.getvalue()
     return processed_data
 
-# Función para generar el botón de descarga
-def get_download_button(row):
-    excel_data = to_excel(row)
-    return st.download_button(
-        label="📥",
-        data=excel_data,
-        file_name=f"{row['Nombre']}_datos.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    )
+# Crear columnas para organizar los botones
+col1, col2, col3 = st.columns([1, 2, 1])
 
-# Agregar la columna de botones de descarga al DataFrame
-df['Descargar'] = df.apply(lambda row: get_download_button(row), axis=1)
+with col2:
+    st.write("Botones de descarga:")
+    for index, row in df.iterrows():
+        excel_data = to_excel(row)
+        st.download_button(
+            label=f"Descargar datos de {row['Nombre']}",
+            data=excel_data,
+            file_name=f"{row['Nombre']}_datos.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key=f"download_{index}"
+        )
 
-# Mostrar el DataFrame con los botones de descarga
 st.dataframe(df)
