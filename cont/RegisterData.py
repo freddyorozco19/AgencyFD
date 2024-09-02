@@ -51,22 +51,33 @@ def to_excel(df):
     return processed_data
 
 
+
 # Función para generar el enlace de descarga
 def get_download_link(row):
     val = to_excel(pd.DataFrame([row]))
     b64 = base64.b64encode(val).decode()
-    return f'<a href="data:application/octet-stream;base64,{b64}" download="{row["Nombre"]}_datos.xlsx">📥</a>'
+    return f'data:application/octet-stream;base64,{b64}'
 
 # Agregar la columna de enlaces de descarga al DataFrame
 df['Descargar'] = df.apply(lambda row: get_download_link(row), axis=1)
 
+# Configurar la columna de descarga como un hipervínculo
+column_config = {
+    "Descargar": st.column_config.LinkColumn(
+        "Descargar",
+        display_text="Descargar",
+        help="Haz clic para descargar los datos de esta fila",
+    )
+}
+
 # Mostrar el DataFrame con los enlaces de descarga
-st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
-st.write(df)
+st.dataframe(
+    df,
+    column_config=column_config,
+    hide_index=True,
+    use_container_width=True
+)
 
-# Estilo CSS para mejorar la apariencia de la tabla
-
-st.write("AA")
 # Botón para descargar todo el DataFrame
 st.write("Descargar todo el DataFrame:")
 full_excel_data = to_excel(df)
