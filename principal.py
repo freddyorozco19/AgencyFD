@@ -36,11 +36,11 @@ import math
 st.set_page_config(layout="wide")
 navigation_tree = {
     "Menu": [
-        st.Page("cont/OptaEventingData.py", title="Eventing Data", icon=":material/download:"),
-        st.Page("cont/OptaJoinData.py", title="Join Data", icon=":material/cell_merge:"),
-        st.Page("cont/OptaExploreData.py", title="Explore Data", icon=":material/search_insights:"),
-        st.Page("cont/OptaExploreTeamData.py", title="Explore Team Data", icon=":material/analytics:"),        
-        st.Page("cont/OptaProMatchData.py", title="Pro Match Data", icon=":material/leaderboard:")]
+        st.Page("cont/MatchAnalysis.py", title="Match Analysis", icon=":material/download:"),
+        #st.Page("cont/OptaJoinData.py", title="Join Data", icon=":material/cell_merge:"),
+        #st.Page("cont/OptaExploreData.py", title="Explore Data", icon=":material/search_insights:"),
+        #st.Page("cont/OptaExploreTeamData.py", title="Explore Team Data", icon=":material/analytics:"),        
+        st.Page("cont/RegisterData.py", title="Register Data", icon=":material/leaderboard:")]
 }
 nav = st.navigation(navigation_tree, position="sidebar")
 nav.run()
