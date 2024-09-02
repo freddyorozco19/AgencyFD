@@ -34,5 +34,5 @@ import io
 
 st.header("MA")
 
-df = pd.read_excel('/Data/Players_Gral.xlsx')
+df = pd.read_excel('Data/Players_Gral.xlsx')
 st.dataframe(df)
