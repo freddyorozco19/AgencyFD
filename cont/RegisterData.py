@@ -31,6 +31,7 @@ from PIL import Image
 from matplotlib.patches import Rectangle
 import math
 import io
+from st_aggrid import AgGrid, JsCode, GridOptionsBuilder
 
 st.header("REGISTER DATA")
 
