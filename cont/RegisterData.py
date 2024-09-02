@@ -50,30 +50,20 @@ def to_excel(df):
     processed_data = output.getvalue()
     return processed_data
 
-def get_table_download_link(df, filename):
-    """Genera un link para descargar los datos en formato Excel"""
-    val = to_excel(df)
+
+# Función para generar el enlace de descarga
+def get_download_link(row):
+    val = to_excel(pd.DataFrame([row]))
     b64 = base64.b64encode(val).decode()
-    return f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}.xlsx">Descargar</a>'
+    return f'<a href="data:application/octet-stream;base64,{b64}" download="{row["Nombre"]}_datos.xlsx">📥</a>'
 
-# Generar la tabla HTML con botones de descarga integrados
-table_html = "<table>"
-table_html += "<tr><th>Nombre</th><th>Edad</th><th>Ciudad</th><th>Salario</th><th>Descargar</th></tr>"
+# Agregar la columna de enlaces de descarga al DataFrame
+df['Descargar'] = df.apply(lambda row: get_download_link(row), axis=1)
 
-for index, row in df.iterrows():
-    table_html += "<tr>"
-    for col in df.columns:
-        table_html += f"<td>{row[col]}</td>"
-    
-    # Agregar el botón de descarga como un enlace en la última columna
-    download_link = get_table_download_link(pd.DataFrame([row]), f"{row['Nombre']}_datos")
-    table_html += f"<td>{download_link}</td>"
-    
-    table_html += "</tr>"
+# Mostrar el DataFrame con los enlaces de descarga
+st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
 
-table_html += "</table>"
-
-# Estilo CSS para la tabla
+# Estilo CSS para mejorar la apariencia de la tabla
 st.markdown("""
 <style>
 table {
@@ -81,15 +71,32 @@ table {
     width: 100%;
 }
 th, td {
-    border: 1px solid black;
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 th {
     background-color: #f2f2f2;
 }
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #f5f5f5;
+}
+a {
+    text-decoration: none;
+}
 </style>
 """, unsafe_allow_html=True)
 
-# Mostrar la tabla HTML
-st.markdown(table_html, unsafe_allow_html=True)
+# Botón para descargar todo el DataFrame
+st.write("Descargar todo el DataFrame:")
+full_excel_data = to_excel(df)
+st.download_button(
+    label="Descargar todo el DataFrame",
+    data=full_excel_data,
+    file_name="todos_los_datos.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    key="download_all"
+)
