@@ -33,3 +33,6 @@ import math
 import io
 
 st.header("MA")
+
+df = pd.read_excel('/Data/Players_Gral.xlsx')
+st.dataframe(df)
