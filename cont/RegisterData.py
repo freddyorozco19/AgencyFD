@@ -62,6 +62,7 @@ df['Descargar'] = df.apply(lambda row: get_download_link(row), axis=1)
 
 # Mostrar el DataFrame con los enlaces de descarga
 st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
+st.write(df)
 
 # Estilo CSS para mejorar la apariencia de la tabla
 
