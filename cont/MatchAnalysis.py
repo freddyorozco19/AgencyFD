@@ -32,8 +32,14 @@ from matplotlib.patches import Rectangle
 import math
 import io
 
-st.header("MA")
+st.header("M Analysis")
 
 df = pd.read_excel('Data/Players_Gral.xlsx')
 df['Categoria'] = df['Categoria'].astype(str)
+
+filmenu01, filmenu02, filmenu03 = st.columns(3)
+with filmenu01:
+  PriorityList = df['Priority'].drop_duplicates().tolist()
+  PrioritySel = st.selectbox('Choose priority':, PriorityList)
+  df = df[df['Priority'] == PrioritySel].reset_index(drop=True)
 st.dataframe(df)
