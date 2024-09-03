@@ -40,6 +40,6 @@ df['Categoria'] = df['Categoria'].astype(str)
 filmenu01, filmenu02, filmenu03 = st.columns(3)
 with filmenu01:
   PriorityList = df['Priority'].drop_duplicates().tolist()
-  PrioritySel = st.selectbox('Choose priority':, PriorityList)
+  PrioritySel = st.selectbox('Choose priority:', PriorityList)
   #df = df[df['Priority'] == PrioritySel].reset_index(drop=True)
 st.dataframe(df)
