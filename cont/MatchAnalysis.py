@@ -40,6 +40,11 @@ df['Categoria'] = df['Categoria'].astype(str)
 filmenu01, filmenu02, filmenu03 = st.columns(3)
 with filmenu01:
   PriorityList = df['Priority'].drop_duplicates().tolist()
+  PriorityList.insert(0, "All")
   PrioritySel = st.selectbox('Choose priority:', PriorityList)
-  df = df[df['Priority'] == PrioritySel].reset_index(drop=True)
+  df_bkfil01 = df
+  if PrioritySel == 'All':
+    df = df_bkfil01
+  else:
+    df = df[df['Priority'] == PrioritySel].reset_index(drop=True)
 st.dataframe(df)
