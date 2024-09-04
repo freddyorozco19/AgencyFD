@@ -79,7 +79,7 @@ column_config = {
     )
 }
 # Muestra el DataFrame con la columna de hipervínculos
-st.dataframe(df2,
+st.dataframe(df,
     column_config=column_config,
     hide_index=True,
     use_container_width=True)
