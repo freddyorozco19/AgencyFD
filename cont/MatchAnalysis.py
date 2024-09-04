@@ -33,7 +33,6 @@ import math
 import io
 
 st.header("M Analysis")
-
 df = pd.read_excel('Data/Players_Gral.xlsx')
 df['Categoria'] = df['Categoria'].astype(str)
 
