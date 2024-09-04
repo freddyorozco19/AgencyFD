@@ -55,7 +55,13 @@ df2 = pd.DataFrame(data)
 
 # Muestra el DataFrame en Streamlit
 st.title("DataFrame con Hipervínculos")
-
+# Función para crear el contenido del archivo Excel para una fila
+def to_excel(df):
+    output = io.BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, sheet_name='Sheet1')
+    processed_data = output.getvalue()
+    return processed_data
 # Función para generar el enlace de descarga
 def get_download_link(row):
     val = to_excel(pd.DataFrame([row]))
