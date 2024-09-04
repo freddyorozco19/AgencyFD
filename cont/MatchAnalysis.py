@@ -69,12 +69,12 @@ def get_download_link(row):
     return f'data:application/octet-stream;base64,{b64}'
 
 # Agregar la columna de enlaces de descarga al DataFrame
-df2['Descargar'] = df2.apply(lambda row: get_download_link(row), axis=1)
+#df2['Descargar'] = df2.apply(lambda row: get_download_link(row), axis=1)
 # Configurar la columna de descarga como un hipervínculo
 column_config = {
-    "Descargar": st.column_config.LinkColumn(
-        "Descargar",
-        display_text="Descargar",
+    "RD": st.column_config.LinkColumn(
+        "RD",
+        display_text="RD",
         help="Haz clic para descargar los datos de esta fila",
     )
 }
