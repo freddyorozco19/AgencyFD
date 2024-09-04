@@ -50,8 +50,8 @@ with filmenu01:
 # Configurar la columna de descarga como un hipervínculo
 column_config = {
     "RD": st.column_config.LinkColumn(
-        "Register Data",
-        display_text="RD",
+        "RD",
+        display_text="Register Data",
         help="Haz clic para descargar los datos de esta fila",
     )
 }
