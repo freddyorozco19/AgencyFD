@@ -56,8 +56,14 @@ df2 = pd.DataFrame(data)
 # Muestra el DataFrame en Streamlit
 st.title("DataFrame con Hipervínculos")
 
-# Crea una columna de hipervínculos
-df2['Link'] = df2['Link'].apply(lambda x: f'[Link]({x})')
+# Función para generar el enlace de descarga
+def get_download_link(row):
+    val = to_excel(pd.DataFrame([row]))
+    b64 = base64.b64encode(val).decode()
+    return f'data:application/octet-stream;base64,{b64}'
+
+# Agregar la columna de enlaces de descarga al DataFrame
+df2['Descargar'] = df2.apply(lambda row: get_download_link(row), axis=1)
 # Configurar la columna de descarga como un hipervínculo
 column_config = {
     "Descargar": st.column_config.LinkColumn(
