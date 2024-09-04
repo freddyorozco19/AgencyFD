@@ -46,34 +46,11 @@ with filmenu01:
     df = df_bkfil01
   else:
     df = df[df['Priority'] == PrioritySel].reset_index(drop=True)
-st.dataframe(df)
 
-# Crea un DataFrame de ejemplo
-data = {'Name': ['John', 'Jane', 'Bob'],
-        'Link': ['https://www.example.com/john', 'https://www.example.com/jane', 'https://www.example.com/bob']}
-df2 = pd.DataFrame(data)
-
-# Muestra el DataFrame en Streamlit
-st.title("DataFrame con Hipervínculos")
-# Función para crear el contenido del archivo Excel para una fila
-def to_excel(df):
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        df.to_excel(writer, index=False, sheet_name='Sheet1')
-    processed_data = output.getvalue()
-    return processed_data
-# Función para generar el enlace de descarga
-def get_download_link(row):
-    val = to_excel(pd.DataFrame([row]))
-    b64 = base64.b64encode(val).decode()
-    return f'data:application/octet-stream;base64,{b64}'
-
-# Agregar la columna de enlaces de descarga al DataFrame
-#df2['Descargar'] = df2.apply(lambda row: get_download_link(row), axis=1)
 # Configurar la columna de descarga como un hipervínculo
 column_config = {
     "RD": st.column_config.LinkColumn(
-        "RD",
+        "Register Data",
         display_text="RD",
         help="Haz clic para descargar los datos de esta fila",
     )
