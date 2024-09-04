@@ -58,6 +58,16 @@ st.title("DataFrame con Hipervínculos")
 
 # Crea una columna de hipervínculos
 df2['Link'] = df2['Link'].apply(lambda x: f'[Link]({x})')
-
+# Configurar la columna de descarga como un hipervínculo
+column_config = {
+    "Descargar": st.column_config.LinkColumn(
+        "Descargar",
+        display_text="Descargar",
+        help="Haz clic para descargar los datos de esta fila",
+    )
+}
 # Muestra el DataFrame con la columna de hipervínculos
-st.dataframe(df2)
+st.dataframe(df2,
+    column_config=column_config,
+    hide_index=True,
+    use_container_width=True)
