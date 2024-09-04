@@ -47,3 +47,17 @@ with filmenu01:
   else:
     df = df[df['Priority'] == PrioritySel].reset_index(drop=True)
 st.dataframe(df)
+
+# Crea un DataFrame de ejemplo
+data = {'Name': ['John', 'Jane', 'Bob'],
+        'Link': ['https://www.example.com/john', 'https://www.example.com/jane', 'https://www.example.com/bob']}
+df2 = pd.DataFrame(data)
+
+# Muestra el DataFrame en Streamlit
+st.title("DataFrame con Hipervínculos")
+
+# Crea una columna de hipervínculos
+df2['Link'] = df2['Link'].apply(lambda x: f'[Link]({x})')
+
+# Muestra el DataFrame con la columna de hipervínculos
+st.dataframe(df2)
