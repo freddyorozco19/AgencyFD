@@ -90,7 +90,6 @@ st.download_button(
     key="download_all"
 )
 
-
 df = pd.DataFrame(
         {"Site": "DuckDuckGo Google Bing".split(),
         "URL": "https://duckduckgo.com/ https://www.google.com/ https://www.bing.com/".split()}
