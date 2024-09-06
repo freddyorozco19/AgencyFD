@@ -107,5 +107,4 @@ gb.configure_column("URL",
                         """))
 
 gridOptions = gb.build()
-
 AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
