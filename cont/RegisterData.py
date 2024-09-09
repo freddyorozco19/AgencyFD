@@ -134,8 +134,6 @@ spreadsheet_id = '1Hvgyk3BW6KrzD130WEkmD_Q_NXPcSOKcZhz7Rc4Qch8'  # Reemplaza con
 range_name = 'All!A1:Z1000'  # Reemplaza con el rango que deseas leer
 
 df2 = read_from_sheets(spreadsheet_id, range_name)
-
-if df2 is not None:
-    st.dataframe(df2)
+st.dataframe(df2)
 
 
