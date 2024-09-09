@@ -118,7 +118,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 def read_from_sheets(spreadsheet_id, range_name):
     """Lee datos de Google Sheets y devuelve un DataFrame usando una cuenta de servicio."""
-    creds = Credentials.from_service_account_file('winstatspilot.json', scopes=SCOPES)
+    creds = Credentials.from_service_account_file('cont/winstatspilot.json', scopes=SCOPES)
     service = build('sheets', 'v4', credentials=creds)
     
     try:
