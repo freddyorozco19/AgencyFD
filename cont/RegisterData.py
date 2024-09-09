@@ -111,3 +111,31 @@ gb.configure_column("URL",
 
 gridOptions = gb.build()
 AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
+
+
+# Define los alcances necesarios para la API de Google Sheets
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+
+def read_from_sheets(spreadsheet_id, range_name):
+    """Lee datos de Google Sheets y devuelve un DataFrame usando una cuenta de servicio."""
+    creds = Credentials.from_service_account_file('winstatspilot.json', scopes=SCOPES)
+    service = build('sheets', 'v4', credentials=creds)
+    
+    try:
+        result = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
+        values = result.get('values', [])
+        return pd.DataFrame(values[1:], columns=values[0]) if values else None
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+# Ejemplo de uso
+spreadsheet_id = '1Hvgyk3BW6KrzD130WEkmD_Q_NXPcSOKcZhz7Rc4Qch8'  # Reemplaza con el ID de tu hoja de cálculo
+range_name = 'All!A1:Z1000'  # Reemplaza con el rango que deseas leer
+
+df2 = read_from_sheets(spreadsheet_id, range_name)
+
+if df2 is not None:
+    st.dataframe(df2)
+
+
