@@ -22,3 +22,6 @@ xlsxwriter
 scikit-learn
 seaborn
 streamlit-aggrid
+google-auth
+google-auth-oauthlib
+google-api-python-client
