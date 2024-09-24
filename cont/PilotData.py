@@ -157,3 +157,31 @@ MetricsAwayTotal = ["away_dfl_duels_accuracy_total", "away_dfl_duels_total", "aw
 
 df0 = df[['date', 'matchID', 'home', 'away', 'scorehome', 'scoreaway'] + MetricsHomeTotal + MetricsAwayTotal]
 st.dataframe(df0)
+
+
+# Duplicar filas y crear la nueva columna "TeamSelName" con valores "Home" y "Away"
+df0_home = df0.copy()
+df0_away = df0.copy()
+df0_home['TeamSelName'] = 'Home'
+df0_away['TeamSelName'] = 'Away'
+# Concatenar los dos dataframes (Home y Away) uno debajo del otro
+dfT00 = pd.concat([df0_home, df0_away], ignore_index=True)
+#dfT00 = dfT00[['TeamSelName'] + dfT00.columns.tolist()]
+MetricsTotalConcat = MetricsHomeTotal + MetricsAwayTotal
+#st.dataframe(dfT00)
+df_list = []
+# Iteramos sobre las filas del DataFrame original
+for index, row in dfT00.iterrows():
+    if row['TeamSelName'] == 'Home':
+        # Seleccionamos las columnas que empiezan con 'home_' y eliminamos el prefijo
+        new_row = row[dfT00.columns[dfT00.columns.str.startswith('home_')]].rename(lambda x: x.replace('home_', ''), axis=0)
+    else:
+        # Seleccionamos las columnas que empiezan con 'away_' y eliminamos el prefijo
+        new_row = row[dfT00.columns[dfT00.columns.str.startswith('away_')]].rename(lambda x: x.replace('away_', ''), axis=0)
+    # Añadimos la nueva fila al DataFrame de salida
+    df_list.append(new_row)
+# Creamos un nuevo DataFrame a partir de la lista de filas
+new_df = pd.DataFrame(df_list).reset_index(drop=True)
+new_df00 = pd.concat([dfT00['date'], dfT00['matchID'], dfT00['home'], dfT00['away'], new_df], axis=1)
+new_df00 = new_df00.sort_values(by='date', ascending=False)
+st.dataframe(new_df00)
