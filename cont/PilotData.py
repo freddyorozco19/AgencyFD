@@ -191,6 +191,19 @@ def select_team(row):
 new_df00.insert(5, 'SelName', new_df00.apply(select_team, axis=1))
 #new_df00['TeamSel'] = new_df00.apply(select_team, axis=1)
 st.dataframe(new_df00)
+st.divider()
+
+menuedt01, menuedt02, menuedt03, menuedt04, menuedt05 = st.columns(5)
+with menuedt01:
+    TeamsSL = new_df00['SelName'].drop_duplicates().tolist()
+    TeamsSL.insert(0, "All")
+    TeamSel = st.selectbox('Choose Team:', TeamsSL)
+    df_bk01 = new_df00
+    if TeamSel == 'All':
+        new_df00 = df_bk01
+    else:
+        new_df00 = new_df00[(new_df00['SelName'] == TeamSel)].reset_index(drop=True)
+
 def to_numeric_safe(x):
     try:
         return pd.to_numeric(x)
@@ -206,7 +219,6 @@ columns_to_process = new_df00.columns[6:]
 for column in columns_to_process:
     # Convertir la columna a numérico, manejando posibles errores
     numeric_column = new_df00[column].apply(to_numeric_safe)
-    
     # Calcular el percentil solo para valores numéricos no nulos
     new_column_name = f"{column}_PCN"
     new_df00[new_column_name] = numeric_column.rank(pct=True, method='min')
