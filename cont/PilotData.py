@@ -204,7 +204,7 @@ with menuedt01:
     else:
         new_df00 = new_df00[new_df00['SelName'] == TeamSel].reset_index(drop=True)
 with menuedt02:
-    MatchdaySL = new_df00['matchday'].drop_Duplicates().tolist()
+    MatchdaySL = new_df00['matchday'].drop_duplicates().tolist()
     MatchdaySL.insert(0, "All")
     MatchdaySel = st.selectbox('Choose Matchday:', MatchdaySL)
     df_bk02 = new_df00
