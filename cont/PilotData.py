@@ -191,3 +191,12 @@ def select_team(row):
 new_df00.insert(5, 'SelName', new_df00.apply(select_team, axis=1))
 #new_df00['TeamSel'] = new_df00.apply(select_team, axis=1)
 st.dataframe(new_df00)
+
+columns_to_process = new_df00.columns[6:]
+
+# Crear nuevas columnas con los percentiles solo para las columnas seleccionadas
+for column in columns_to_process:
+    new_column_name = f"{column}_PCN"
+    new_df00[new_column_name] = new_df00[column].rank(pct=True)
+
+st.dataframe(new_df00)
