@@ -176,6 +176,6 @@ for index, row in dfT00.iterrows():
     df_list.append(new_row)
 # Creamos un nuevo DataFrame a partir de la lista de filas
 new_df = pd.DataFrame(df_list).reset_index(drop=True)
-new_df00 = pd.concat([dfT00['date'], dfT00['matchID'], dfT00['home'], dfT00['away'], new_df], axis=1)
+new_df00 = pd.concat([dfT00['date'], dfT00['matchID'], dfT00['home'], dfT00['away'], dfT00['TeamSelName'], new_df], axis=1)
 new_df00 = new_df00.sort_values(by='date', ascending=False)
 st.dataframe(new_df00)
