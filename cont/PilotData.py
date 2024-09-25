@@ -202,8 +202,17 @@ with menuedt01:
     if TeamSel == 'All':
         new_df00 = df_bk01
     else:
-        new_df00 = new_df00[(new_df00['SelName'] == TeamSel)].reset_index(drop=True)
-
+        new_df00 = new_df00[new_df00['SelName'] == TeamSel].reset_index(drop=True)
+with menuedt02:
+    MatchdaySL = new_df00['matchday'].drop_Duplicates().tolist()
+    MatchdaySL.insert(0, "All")
+    MatchdaySel = st.selectbox('Choose Matchday:', MatchdaySL)
+    df_bk02 = new_df00
+    if MatchdaySel == 'All':
+        new_df00 == df_bk02
+    else:
+        new_df00 = new_df00[new_df00['matchday'] == MatchdaySel].reset_index(drop=True)
+        
 def to_numeric_safe(x):
     try:
         return pd.to_numeric(x)
