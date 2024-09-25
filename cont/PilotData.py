@@ -194,15 +194,6 @@ st.dataframe(new_df00)
 st.divider()
 
 menuedt01, menuedt02, menuedt03, menuedt04, menuedt05 = st.columns(5)
-with menuedt02:
-    TeamsSL = new_df00['SelName'].drop_duplicates().tolist()
-    TeamsSL.insert(0, "All")
-    TeamSel = st.selectbox('Choose Team:', TeamsSL)
-    df_bk01 = new_df00
-    if TeamSel == 'All':
-        new_df00 = df_bk01
-    else:
-        new_df00 = new_df00[new_df00['SelName'] == TeamSel].reset_index(drop=True)
 with menuedt01:
     MatchdaySL = new_df00['matchday'].drop_duplicates().tolist()
     MatchdaySL.insert(0, "All")
@@ -212,6 +203,16 @@ with menuedt01:
         new_df00 == df_bk02
     else:
         new_df00 = new_df00[new_df00['matchday'] == MatchdaySel].reset_index(drop=True)
+
+with menuedt02:
+    TeamsSL = new_df00['SelName'].drop_duplicates().tolist()
+    TeamsSL.insert(0, "All")
+    TeamSel = st.selectbox('Choose Team:', TeamsSL)
+    df_bk01 = new_df00
+    if TeamSel == 'All':
+        new_df00 = df_bk01
+    else:
+        new_df00 = new_df00[new_df00['SelName'] == TeamSel].reset_index(drop=True)
         
 def to_numeric_safe(x):
     try:
