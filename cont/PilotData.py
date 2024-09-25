@@ -178,4 +178,15 @@ for index, row in dfT00.iterrows():
 new_df = pd.DataFrame(df_list).reset_index(drop=True)
 new_df00 = pd.concat([dfT00['date'], dfT00['matchID'], dfT00['home'], dfT00['away'], dfT00['TeamSelName'], new_df], axis=1)
 new_df00 = new_df00.sort_values(by='date', ascending=False)
+# Asumiendo que tu DataFrame se llama 'df'
+def select_team(row):
+    if 'Home' in row['TeamSelName']:
+        return row['home']
+    elif 'Away' in row['TeamSelName']:
+        return row['away']
+    else:
+        return None  # O puedes manejar otros casos según lo necesites
+
+# Crear la nueva columna 'TeamSel'
+new_df00['TeamSel'] = new_df00.apply(select_team, axis=1)
 st.dataframe(new_df00)
