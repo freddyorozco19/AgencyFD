@@ -225,6 +225,7 @@ columns_to_process = new_df00.columns[6:]
 #for column in columns_to_process:
     #new_column_name = f"{column}_PCN"
     #new_df00[new_column_name] = new_df00[column].rank(pct=True)
+nuevas_columnas = []
 
 for column in columns_to_process:
     # Convertir la columna a numérico, manejando posibles errores
@@ -232,5 +233,7 @@ for column in columns_to_process:
     # Calcular el percentil solo para valores numéricos no nulos
     new_column_name = f"{column}_PCN"
     new_df00[new_column_name] = numeric_column.rank(pct=True, method='min')
+    nuevas_columnas.append(new_column_name)
 
 st.dataframe(new_df00)
+st.write(nuevas_columnas)
