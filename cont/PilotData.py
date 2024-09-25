@@ -191,12 +191,24 @@ def select_team(row):
 new_df00.insert(5, 'SelName', new_df00.apply(select_team, axis=1))
 #new_df00['TeamSel'] = new_df00.apply(select_team, axis=1)
 st.dataframe(new_df00)
-
+def to_numeric_safe(x):
+    try:
+        return pd.to_numeric(x)
+    except ValueError:
+        return np.nan
 columns_to_process = new_df00.columns[6:]
-st.write(columns_to_process)
+#st.write(columns_to_process)
 # Crear nuevas columnas con los percentiles solo para las columnas seleccionadas
+#for column in columns_to_process:
+    #new_column_name = f"{column}_PCN"
+    #new_df00[new_column_name] = new_df00[column].rank(pct=True)
+
 for column in columns_to_process:
+    # Convertir la columna a numérico, manejando posibles errores
+    numeric_column = new_df00[column].apply(to_numeric_safe)
+    
+    # Calcular el percentil solo para valores numéricos no nulos
     new_column_name = f"{column}_PCN"
-    new_df00[new_column_name] = new_df00[column].rank(pct=True)
+    new_df00[new_column_name] = numeric_column.rank(pct=True, method='min')
 
 st.dataframe(new_df00)
