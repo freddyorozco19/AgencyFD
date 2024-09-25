@@ -194,7 +194,7 @@ st.dataframe(new_df00)
 st.divider()
 
 menuedt01, menuedt02, menuedt03, menuedt04, menuedt05 = st.columns(5)
-with menuedt01:
+with menuedt02:
     TeamsSL = new_df00['SelName'].drop_duplicates().tolist()
     TeamsSL.insert(0, "All")
     TeamSel = st.selectbox('Choose Team:', TeamsSL)
@@ -203,7 +203,7 @@ with menuedt01:
         new_df00 = df_bk01
     else:
         new_df00 = new_df00[new_df00['SelName'] == TeamSel].reset_index(drop=True)
-with menuedt02:
+with menuedt01:
     MatchdaySL = new_df00['matchday'].drop_duplicates().tolist()
     MatchdaySL.insert(0, "All")
     MatchdaySel = st.selectbox('Choose Matchday:', MatchdaySL)
