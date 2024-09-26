@@ -274,6 +274,7 @@ scaled_values = scaler.fit_transform(new_df00bk[MetricsTTotal])
 dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
 dfscaledC = pd.concat([new_df00bk['matchID'], dfscaled], axis=1)
 st.write(dfscaledC)
+st.write(new_df00bk)
 
 fig, ax = plt.subplots(figsize=(3, 10), dpi = 300)
 ax.axis("off")
