@@ -237,4 +237,22 @@ for column in columns_to_process:
 
 st.dataframe(new_df00)
 #st.write(nuevas_columnas)
+new_df10 = new_df00[['matchID'] + nuevas_columnas]
 st.dataframe(new_df00[['matchID'] + nuevas_columnas])
+
+
+def generate_progress_column_config(columns_list):
+    column_config = {}
+    for col in columns_list:
+        # Extraer el nombre corto de la columna para el label
+        short_name = col.replace('_PCN_total', '')
+        column_config[col] = st.column_config.ProgressColumn(
+            label=short_name,
+            help=col,
+            format="%.2f",
+            min_value=0,
+            max_value=1)
+    return column_config
+
+column_config = generate_progress_column_config(nuevas_columnas)
+st.dataframe(new_df10, column_config = column_config)
