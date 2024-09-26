@@ -282,6 +282,8 @@ scaler =  StandardScaler()
 scaled_values = scaler.fit_transform(df[MetricsTTotal])
 dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
 dfscaledC = pd.concat([df['matchID'], dfscaled], axis=1)
+dfscaledC['shots_accuracy_total'] = dfscaledC['shots_accuracy_total'].astype('float64')
+
 #st.write(np.mean(new_df00bk['touches_total']))
 #st.write(dfscaledC)
 #st.write(new_df00bk)
