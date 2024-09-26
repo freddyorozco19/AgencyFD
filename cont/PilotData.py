@@ -152,6 +152,7 @@ df['matchID'] = df['matchID'].astype(str)
 df = df.rename(columns={'home_score': 'scorehome', 'away_score': 'scoreaway'})
 MetricsHomeTotal = ["home_dfl_duels_accuracy_total", "home_dfl_duels_total", "home_dfl_duels_lost_total", "home_dfl_duels_won_total", "home_tackles_accuracy_total", "home_shots_accuracy_total", "home_crosses_accuracy_total", "home_passes_opponents_half_accuracy_total", "home_passes_accuracy_total", "home_duels_accuracy_total", "home_aerial_duels_accuracy_total", "home_tackles_won_total", "home_corners_won_total", "home_won_contest_total", "home_cards_yellow_total", "home_through_balls_total", "home_tackles_total", "home_shots_total", "home_cards_red_total", "home_passes_total", "home_offsides_total", "home_passes_long_total", "home_passes_opponents_half_total", "home_passes_final_third_total", "home_crosses_not_corners_total", "home_crosses_total", "home_clearances_total", "home_assists_total", "home_put_throughs_successful_total", "home_passes_final_third_successful_total", "home_fifty_fifties_successful_total", "home_shots_off_target_total", "home_passes_right_total", "home_put_throughs_total", "home_possession_total", "home_possession_won_middle_3rd_total", "home_possession_won_defensive_3rd_total", "home_possession_won_attacking_3rd_total", "home_possession_lost_all_total", "home_pen_area_entries_total", "home_shots_on_target_total", "home_passes_left_total", "home_interceptions_total", "home_goals_total", "home_passes_forward_total", "home_freekick_crosses_total", "home_formation_used_total", "home_fouls_won_total", "home_fouls_conceded_total", "home_final_third_entries_total", "home_fifty_fifties_total", "home_duels_won_total", "home_duels_lost_total", "home_corner_taken_total", "home_shots_blocked_total", "home_recoveries_total", "home_passes_backward_total", "home_shots_conceded_outside_box_total", "home_shots_conceded_inside_box_total", "home_own_goals_outside_box_total", "home_own_goals_inside_box_total", "home_att_hd_total_total", "home_aerial_duels_won_total", "home_aerial_duels_lost_total", "home_passes_successful_total", "home_passes_opponents_half_successful_total", "home_crosses_successful_total", "home_touches_total"]
 MetricsAwayTotal = ["away_dfl_duels_accuracy_total", "away_dfl_duels_total", "away_dfl_duels_lost_total", "away_dfl_duels_won_total", "away_tackles_accuracy_total", "away_shots_accuracy_total", "away_crosses_accuracy_total", "away_passes_opponents_half_accuracy_total", "away_passes_accuracy_total", "away_duels_accuracy_total", "away_aerial_duels_accuracy_total", "away_tackles_won_total", "away_corners_won_total", "away_won_contest_total", "away_cards_yellow_total", "away_through_balls_total", "away_tackles_total", "away_shots_total", "away_cards_red_total", "away_passes_total", "away_offsides_total", "away_passes_long_total", "away_passes_opponents_half_total", "away_passes_final_third_total", "away_crosses_not_corners_total", "away_crosses_total", "away_clearances_total", "away_assists_total", "away_put_throughs_successful_total", "away_passes_final_third_successful_total", "away_fifty_fifties_successful_total", "away_shots_off_target_total", "away_passes_right_total", "away_put_throughs_total", "away_possession_total", "away_possession_won_middle_3rd_total", "away_possession_won_defensive_3rd_total", "away_possession_won_attacking_3rd_total", "away_possession_lost_all_total", "away_pen_area_entries_total", "away_shots_on_target_total", "away_passes_left_total", "away_interceptions_total", "away_goals_total", "away_passes_forward_total", "away_freekick_crosses_total", "away_formation_used_total", "away_fouls_won_total", "away_fouls_conceded_total", "away_final_third_entries_total", "away_fifty_fifties_total", "away_duels_won_total", "away_duels_lost_total", "away_corner_taken_total", "away_shots_blocked_total", "away_recoveries_total", "away_passes_backward_total", "away_shots_conceded_outside_box_total", "away_shots_conceded_inside_box_total", "away_own_goals_outside_box_total", "away_own_goals_inside_box_total", "away_att_hd_total_total", "away_aerial_duels_won_total", "away_aerial_duels_lost_total", "away_passes_successful_total", "away_passes_opponents_half_successful_total", "away_crosses_successful_total", "away_touches_total"]
+MetricsTTotal = ["touches_total", "duels_accuracy_total", "duels_won_total", "duels_lost_total", "dfl_duels_total", "dfl_duels_accuracy_total", "dfl_duels_won_total", "dfl_duels_lost_total", "aerial_duels_accuracy_total", "aerial_duels_won_total", "aerial_duels_lost_total", "possession_total", "shots_total", "shots_accuracy_total", "shots_on_target_total", "shots_off_target_total", "shots_blocked_total", "goals_total", "assists_total", "passes_total", "passes_accuracy_total", "passes_successful_total", "passes_forward_total", "passes_right_total", "passes_left_total", "passes_backward_total", "passes_final_third_total", "passes_final_third_successful_total", "passes_long_total", "passes_opponents_half_total", "passes_opponents_half_accuracy_total", "passes_opponents_half_successful_total", "crosses_total", "crosses_accuracy_total", "crosses_successful_total", "crosses_not_corners_total", "through_balls_total", "final_third_entries_total", "pen_area_entries_total", "put_throughs_total", "put_throughs_successful_total", "tackles_accuracy_total", "tackles_total", "tackles_won_total", "clearances_total", "interceptions_total", "recoveries_total", "won_contest_total", "possession_won_attacking_3rd_total", "possession_won_middle_3rd_total", "possession_won_defensive_3rd_total", "shots_conceded_outside_box_total", "shots_conceded_inside_box_total", "fifty_fifties_total", "fifty_fifties_successful_total", "fouls_won_total", "fouls_conceded_total", "corners_won_total", "corner_taken_total", "freekick_crosses_total", "possession_lost_all_total", "att_hd_total_total", "own_goals_outside_box_total", "own_goals_inside_box_total", "cards_yellow_total", "cards_red_total", "offsides_total", "formation_used_total"]
 df0 = df[['date', 'matchID', 'matchday', 'home', 'away', 'scorehome', 'scoreaway'] + MetricsHomeTotal + MetricsAwayTotal]
 # Duplicar filas y crear la nueva columna "TeamSelName" con valores "Home" y "Away"
 df0_home = df0.copy()
@@ -189,6 +190,8 @@ def select_team(row):
 
 # Crear la nueva columna 'TeamSel'
 new_df00.insert(5, 'SelName', new_df00.apply(select_team, axis=1))
+new_df00 = new_df00[['date', 'matchID', 'home', 'away', 'SelName', 'TeamSelName', 'scorehome', 'scoreaway'] + MetricsTTotal2]
+
 #new_df00['TeamSel'] = new_df00.apply(select_team, axis=1)
 st.dataframe(new_df00)
 st.divider()
@@ -203,7 +206,6 @@ with menuedt01:
         new_df00 = df_bk02
     else:
         new_df00 = new_df00[new_df00['matchday'] == MatchdaySel].reset_index(drop=True)
-
 with menuedt02:
     TeamsSL = new_df00['SelName'].drop_duplicates().tolist()
     TeamsSL.insert(0, "All")
@@ -228,6 +230,7 @@ def to_numeric_safe(x):
     except ValueError:
         return np.nan
 columns_to_process = new_df00.columns[7:]
+
 #st.write(columns_to_process)
 # Crear nuevas columnas con los percentiles solo para las columnas seleccionadas
 #for column in columns_to_process:
@@ -264,3 +267,6 @@ def generate_progress_column_config(columns_list):
 
 column_config = generate_progress_column_config(nuevas_columnas)
 st.dataframe(new_df10, column_config = column_config)
+st.divider()
+
+
