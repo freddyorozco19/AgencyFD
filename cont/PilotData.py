@@ -397,7 +397,7 @@ for i, col in zip(range(2, 69), MetricsTTotal_invertido):  # Recorrer desde 2 ha
     ax.scatter(dfscaledC2[col], np.full(len(dfscaledC2), i),  # Usar i directamente
                color="w", 
                edgecolor="#121214",
-               s=30, 
+               s=35, 
                alpha=1.0, 
                linewidth=0.5, 
                zorder=3)
