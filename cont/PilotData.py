@@ -392,79 +392,16 @@ for i, col in zip(range(2, 69), MetricsTTotal_invertido):  # Recorrer desde 2 ha
 
 
 dfscaledC2 = dfscaledC[dfscaledC['matchID'] == MatchIDSel].reset_index(drop=True)
-ax.scatter(dfscaledC2['touches_total'], [68]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['duels_accuracy_total'], [67]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['duels_won_total'], [66]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['duels_lost_total'], [65]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['dfl_duels_total'], [64]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['dfl_duels_accuracy_total'], [63]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['dfl_duels_won_total'], [62]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['dfl_duels_lost_total'], [61]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['aerial_duels_accuracy_total'], [60]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 
-ax.scatter(dfscaledC2['aerial_duels_won_total'], [59]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['aerial_duels_lost_total'], [58]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['possession_total'], [57]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['shots_total'], [56]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['shots_accuracy_total'], [55]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['shots_on_target_total'], [54]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['shots_off_target_total'], [53]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['shots_blocked_total'], [52]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['goals_total'], [51]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['assists_total'], [50]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
+for i, col in zip(range(2, 69), MetricsTTotal_invertido):  # Recorrer desde 2 hasta 68
+    ax.scatter(dfscaledC2[col], np.full(len(dfscaledC2), i),  # Usar i directamente
+               color="w", 
+               edgecolor="#121214",
+               s=30, 
+               alpha=1.0, 
+               linewidth=0.5, 
+               zorder=3)
 
-ax.scatter(dfscaledC2['passes_total'], [49]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_accuracy_total'], [48]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_successful_total'], [47]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_forward_total'], [46]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_right_total'], [45]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_left_total'], [44]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_backward_total'], [43]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_final_third_total'], [42]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_final_third_successful_total'], [41]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_long_total'], [40]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-
-ax.scatter(dfscaledC2['passes_opponents_half_total'], [39]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_opponents_half_accuracy_total'], [38]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['passes_opponents_half_successful_total'], [37]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['through_balls_total'], [36]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['crosses_total'], [35]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['crosses_accuracy_total'], [34]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['crosses_successful_total'], [33]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['crosses_not_corners_total'], [32]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['final_third_entries_total'], [31]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['pen_area_entries_total'], [30]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-
-ax.scatter(dfscaledC2['put_throughs_total'], [29]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['put_throughs_successful_total'], [28]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['tackles_total'], [27]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['tackles_accuracy_total'], [26]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['tackles_won_total'], [25]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['clearances_total'], [24]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['interceptions_total'], [23]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['recoveries_total'], [22]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['won_contest_total'], [21]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['possession_won_attacking_3rd_total'], [20]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-
-ax.scatter(dfscaledC2['possession_won_middle_3rd_total'], [19]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['possession_won_defensive_3rd_total'], [18]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['shots_conceded_outside_box_total'], [17]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['shots_conceded_inside_box_total'], [16]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['fifty_fifties_total'], [15]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['fifty_fifties_successful_total'], [14]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['fouls_won_total'], [13]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['fouls_conceded_total'], [12]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['corners_won_total'], [11]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['corner_taken_total'], [10]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-
-ax.scatter(dfscaledC2['freekick_crosses_total'], [9]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['possession_lost_all_total'], [8]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['att_hd_total_total'], [7]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['own_goals_outside_box_total'], [6]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['own_goals_inside_box_total'], [5]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['cards_yellow_total'], [4]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['cards_red_total'], [3]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
-ax.scatter(dfscaledC2['offsides_total'], [2]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 
 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
 st.divider()
