@@ -278,7 +278,7 @@ st.write(df)
 st.write(df[MetricsTTotal])
 #MatchIDList = df['matchID'].drop_duplicates().tolist()
 #MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
-st.write("DESDE AQUI")
+st.write("DESDE AQUjI")
 #st.write(new_df00bk[MetricsTTotal])
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
