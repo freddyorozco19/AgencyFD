@@ -273,22 +273,23 @@ column_config = generate_progress_column_config(nuevas_columnas)
 st.dataframe(new_df10, column_config = column_config)
 st.divider()
 ############################################################################################################################################################################################################################
-
-st.write(new_df00bk)
-MatchIDList = new_df00bk['matchID'].drop_duplicates().tolist()
+df = new_df00bk
+st.write(df)
+st.write(df[MetricsTTotal])
+MatchIDList = df['matchID'].drop_duplicates().tolist()
 MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
 st.write("DESDE AQUI")
 #st.write(new_df00bk[MetricsTTotal])
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
-scaled_values1 = scaler.fit_transform(new_df00bk['touches_total'].values.reshape(-1, 1))
+scaled_values1 = scaler.fit_transform(df['touches_total'].values.reshape(-1, 1))
 #scaled_values1 = scaler.fit_transform(new_df00bk['touches_total'])
-scaled_values = scaler.fit_transform(new_df00bk[MetricsTTotal])
+scaled_values = scaler.fit_transform(df[MetricsTTotal])
 #st.write(scaled_values1)
 dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
-dfscaledC = pd.concat([new_df00bk['matchID'], dfscaled], axis=1)
+dfscaledC = pd.concat([df['matchID'], dfscaled], axis=1)
 #st.write(np.mean(new_df00bk['touches_total']))
-#st.write(dfscaledC)
+st.write(dfscaledC)
 #st.write(new_df00bk)
 
 
