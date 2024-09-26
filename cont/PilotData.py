@@ -378,12 +378,87 @@ for i in range(2, 69):  # Desde 2 hasta 68, inclusive
 ax.plot([0, 0],[1, 69], color="w", ls="--", zorder=10, lw=0.5)
 
 # Las posiciones en el eje y correspondientes
-y_positions = list(range(68, 67 - len(MetricsTTotal), -1))
-st.write(y_positions)
+#y_positions = list(range(68, 67 - len(MetricsTTotal), -1))
+#st.write(y_positions)
 # Itera sobre las métricas y sus posiciones
-for metric, y in zip(MetricsTTotal, y_positions):
-    ax.scatter(dfscaledC[metric], [y] * len(dfscaledC), color="#FF0046", s=35, alpha=0.50,
-               linewidth=0.5, zorder=3)
+#for metric, y in zip(MetricsTTotal, y_positions):
+    #ax.scatter(dfscaledC[metric], [y] * len(dfscaledC), color="#FF0046", s=35, alpha=0.50, linewidth=0.5, zorder=3)
+
+columnas_y = [
+    ('touches_total', 68),
+    ('duels_accuracy_total', 67),
+    ('duels_won_total', 66),
+    ('duels_lost_total', 65),
+    ('dfl_duels_total', 64),
+    ('dfl_duels_accuracy_total', 63),
+    ('dfl_duels_won_total', 62),
+    ('dfl_duels_lost_total', 61),
+    ('aerial_duels_accuracy_total', 60),
+    ('aerial_duels_won_total', 59),
+    ('aerial_duels_lost_total', 58),
+    ('possession_total', 57),
+    ('shots_total', 56),
+    ('shots_accuracy_total', 55),
+    ('shots_on_target_total', 54),
+    ('shots_off_target_total', 53),
+    ('shots_blocked_total', 52),
+    ('goals_total', 51),
+    ('assists_total', 50),
+    ('passes_total', 49),
+    ('passes_accuracy_total', 48),
+    ('passes_successful_total', 47),
+    ('passes_forward_total', 46),
+    ('passes_right_total', 45),
+    ('passes_left_total', 44),
+    ('passes_backward_total', 43),
+    ('passes_final_third_total', 42),
+    ('passes_final_third_successful_total', 41),
+    ('passes_long_total', 40),
+    ('passes_opponents_half_total', 39),
+    ('passes_opponents_half_accuracy_total', 38),
+    ('passes_opponents_half_successful_total', 37),
+    ('through_balls_total', 36),
+    ('crosses_total', 35),
+    ('crosses_accuracy_total', 34),
+    ('crosses_successful_total', 33),
+    ('crosses_not_corners_total', 32),
+    ('final_third_entries_total', 31),
+    ('pen_area_entries_total', 30),
+    ('put_throughs_total', 29),
+    ('put_throughs_successful_total', 28),
+    ('tackles_total', 27),
+    ('tackles_accuracy_total', 26),
+    ('tackles_won_total', 25),
+    ('clearances_total', 24),
+    ('interceptions_total', 23),
+    ('recoveries_total', 22),
+    ('won_contest_total', 21),
+    ('possession_won_attacking_3rd_total', 20),
+    ('possession_won_middle_3rd_total', 19),
+    ('possession_won_defensive_3rd_total', 18),
+    ('shots_conceded_outside_box_total', 17),
+    ('shots_conceded_inside_box_total', 16),
+    ('fifty_fifties_total', 15),
+    ('fifty_fifties_successful_total', 14),
+    ('fouls_won_total', 13),
+    ('fouls_conceded_total', 12),
+    ('corners_won_total', 11),
+    ('corner_taken_total', 10),
+    ('freekick_crosses_total', 9),
+    ('possession_lost_all_total', 8),
+    ('att_hd_total_total', 7),
+    ('own_goals_outside_box_total', 6),
+    ('own_goals_inside_box_total', 5),
+    ('cards_yellow_total', 4),
+    ('cards_red_total', 3),
+    ('offsides_total', 2),
+]
+
+# Ajustar el rango de valores en el eje Y
+y_values = [pos for col, pos in columnas_y]
+
+for col, y in columnas_y:
+    ax.scatter(dfscaledC[col], [y]*len(dfscaledC), color="#FF0046", s=40, alpha=0.50 if y > 48 else 0.75, linewidth=0.5, zorder=3)
 
 
 dfscaledC2 = dfscaledC[dfscaledC['matchID'] == MatchIDSel].reset_index(drop=True)
