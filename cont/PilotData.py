@@ -454,11 +454,18 @@ columnas_y = [
 ]
 
 # Ajustar el rango de valores en el eje Y
-y_values = [pos for col, pos in columnas_y]
+#y_values = [pos for col, pos in columnas_y]
 
-for col, y in columnas_y:
-    ax.scatter(dfscaledC[col], [y]*len(dfscaledC), color="#FF0046", s=40, alpha=0.50 if y > 48 else 0.75, linewidth=0.5, zorder=3)
-
+#for col, y in columnas_y:
+#    ax.scatter(dfscaledC[col], [y]*len(dfscaledC), color="#FF0046", s=40, alpha=0.50 if y > 48 else 0.75, linewidth=0.5, zorder=3)
+# Graficar todas las columnas seleccionadas
+for i, col in zip(range(2, 69), MetricsTTotal):  # Recorrer desde 2 hasta 68
+    ax.scatter(dfscaledC[col], np.full(len(dfscaledC), i),  # Usar i directamente
+               color="#FF0046", 
+               s=40, 
+               alpha=0.50 if i > 47 else 0.75, 
+               linewidth=0.5, 
+               zorder=3)
 
 
 dfscaledC2 = dfscaledC[dfscaledC['matchID'] == MatchIDSel].reset_index(drop=True)
