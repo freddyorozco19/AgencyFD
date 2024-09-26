@@ -283,10 +283,8 @@ scaled_values = scaler.fit_transform(df[MetricsTTotal])
 dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
 dfscaledC = pd.concat([df['matchID'], dfscaled], axis=1)
 #st.write(np.mean(new_df00bk['touches_total']))
-st.write(dfscaledC)
+#st.write(dfscaledC)
 #st.write(new_df00bk)
-
-
 ############################################################################################################################################################################################################################
 
 fig, ax = plt.subplots(figsize=(3, 10), dpi = 300)
