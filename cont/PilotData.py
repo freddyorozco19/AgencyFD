@@ -236,5 +236,5 @@ for column in columns_to_process:
     nuevas_columnas.append(new_column_name)
 
 st.dataframe(new_df00)
-st.write(nuevas_columnas)
+#st.write(nuevas_columnas)
 st.dataframe(new_df00[['matchID'] + nuevas_columnas])
