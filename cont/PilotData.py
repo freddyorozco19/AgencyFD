@@ -268,7 +268,7 @@ def generate_progress_column_config(columns_list):
 column_config = generate_progress_column_config(nuevas_columnas)
 st.dataframe(new_df10, column_config = column_config)
 st.divider()
-
+st.write(new_df10)
 
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
