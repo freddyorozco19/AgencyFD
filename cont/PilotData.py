@@ -382,7 +382,7 @@ MetricsTTotal_invertido = MetricsTTotal[::-1]
 for i, col in zip(range(2, 69), MetricsTTotal_invertido):  # Recorrer desde 2 hasta 68
     ax.scatter(dfscaledC[col], np.full(len(dfscaledC), i),  # Usar i directamente
                color="#FF0046", 
-               s=40, 
+               s=30, 
                alpha=0.50, 
                linewidth=0.5, 
                zorder=3)
