@@ -275,6 +275,7 @@ st.divider()
 ############################################################################################################################################################################################################################
 df = new_df00bk
 df = df.sort_values(by='touches_total', ascending=False).reset_index(drop=True)
+df['shots_accuracy_total'] = df['shots_accuracy_total'].astype('float64')
 MatchIDList = df['matchID'].drop_duplicates().tolist()
 MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
 scaler =  StandardScaler()
@@ -282,7 +283,6 @@ scaler =  StandardScaler()
 scaled_values = scaler.fit_transform(df[MetricsTTotal])
 dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
 dfscaledC = pd.concat([df['matchID'], dfscaled], axis=1)
-dfscaledC['shots_accuracy_total'] = dfscaledC['shots_accuracy_total'].astype('float64')
 
 #st.write(np.mean(new_df00bk['touches_total']))
 #st.write(dfscaledC)
