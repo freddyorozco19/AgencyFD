@@ -238,7 +238,7 @@ for column in columns_to_process:
 st.dataframe(new_df00)
 #st.write(nuevas_columnas)
 new_df10 = new_df00[['matchID'] + nuevas_columnas]
-st.dataframe(new_df00[['matchID'] + nuevas_columnas])
+#st.dataframe(new_df00[['matchID'] + nuevas_columnas])
 
 
 def generate_progress_column_config(columns_list):
