@@ -509,3 +509,5 @@ ax.scatter(dfscaledC2['cards_yellow_total'], [4]*len(dfscaledC2), edgecolor="#12
 ax.scatter(dfscaledC2['cards_red_total'], [3]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 ax.scatter(dfscaledC2['offsides_total'], [2]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 
+st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+st.divider()
