@@ -270,3 +270,9 @@ st.dataframe(new_df10, column_config = column_config)
 st.divider()
 
 
+scaler =  StandardScaler()
+# Aplicar el escalador a todas las columnas al mismo tiempo
+scaled_values = scaler.fit_transform(new_df10[MetricsTTotal])
+dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
+dfscaledC = pd.concat([new_df10['matchID'], dfscaled], axis=1)
+st.write(dfscaledC)
