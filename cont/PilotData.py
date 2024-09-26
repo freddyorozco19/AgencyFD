@@ -213,6 +213,14 @@ with menuedt02:
         new_df00 = df_bk01
     else:
         new_df00 = new_df00[new_df00['SelName'] == TeamSel].reset_index(drop=True)
+with menuedt03:
+    SelTeamSL = ['All', 'Home', 'Away']
+    SelTeamSel = st.selectbox('Choose Type:', SelTeamSL)
+    df_bk03 = new_df00
+    if TeamSel == 'All':
+        new_df00 = df_bk03
+    else:
+        new_df00 = new_df00[new_df00['TeamSelName'] == SelTeamSel].reset_index(drop=True)
         
 def to_numeric_safe(x):
     try:
