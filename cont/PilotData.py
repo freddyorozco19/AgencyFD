@@ -191,6 +191,7 @@ def select_team(row):
 # Crear la nueva columna 'TeamSel'
 new_df00.insert(5, 'SelName', new_df00.apply(select_team, axis=1))
 new_df00 = new_df00[['date', 'matchday', 'matchID', 'home', 'away', 'SelName', 'TeamSelName'] + MetricsTTotal]
+new_df00bk = new_df00
 
 #new_df00['TeamSel'] = new_df00.apply(select_team, axis=1)
 st.dataframe(new_df00)
@@ -231,7 +232,6 @@ def to_numeric_safe(x):
         return np.nan
 columns_to_process = new_df00.columns[7:]
 
-new_df00bk = new_df00
 
 nuevas_columnas = []
 
