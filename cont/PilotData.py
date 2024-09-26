@@ -280,7 +280,7 @@ st.write(df[MetricsTTotal])
 #MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
 st.write("DESDE AQUjI")
 #st.write(new_df00bk[MetricsTTotal])
-df = df.sort_values(by='touches_total', ascending=False)
+df = df.sort_values(by='touches_total', ascending=False).reset_index(drop=True)
 st.write(df)
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
