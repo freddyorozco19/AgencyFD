@@ -250,7 +250,7 @@ for column in columns_to_process:
 #st.write(nuevas_columnas)
 new_df10 = new_df00[['matchID', 'SelName'] + nuevas_columnas]
 #st.dataframe(new_df00[['matchID'] + nuevas_columnas])
-
+new_df10bk = new_df10
 
 def generate_progress_column_config(columns_list):
     column_config = {}
@@ -272,7 +272,7 @@ st.write(new_df10)
 
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
-scaled_values = scaler.fit_transform(new_df10[MetricsTTotal])
+scaled_values = scaler.fit_transform(new_df10bk[MetricsTTotal])
 dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
-dfscaledC = pd.concat([new_df10['matchID'], dfscaled], axis=1)
+dfscaledC = pd.concat([new_df10bk['matchID'], dfscaled], axis=1)
 st.write(dfscaledC)
