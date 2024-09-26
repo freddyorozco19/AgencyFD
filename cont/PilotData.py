@@ -219,7 +219,7 @@ def to_numeric_safe(x):
         return pd.to_numeric(x)
     except ValueError:
         return np.nan
-columns_to_process = new_df00.columns[6:]
+columns_to_process = new_df00.columns[7:]
 #st.write(columns_to_process)
 # Crear nuevas columnas con los percentiles solo para las columnas seleccionadas
 #for column in columns_to_process:
