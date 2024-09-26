@@ -449,6 +449,8 @@ ax.scatter(dfscaledC['offsides_total'], [2]*len(dfscaledC), color = "#FF0046", s
 
 
 dfscaledC2 = dfscaledC[dfscaledC['matchID'] == MatchIDSel].reset_index(drop=True)
+st.write("SCALED2")
+st.write(dfscaledC2)
 ax.scatter(dfscaledC2['touches_total'], [68]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 ax.scatter(dfscaledC2['duels_accuracy_total'], [67]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 ax.scatter(dfscaledC2['duels_won_total'], [66]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
