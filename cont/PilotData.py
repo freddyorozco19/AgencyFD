@@ -267,13 +267,14 @@ st.divider()
 st.write(new_df10)
 MatchIDList = new_df00bk['matchID'].drop_duplicates().tolist()
 MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
-
+st.write("DESDE AQUI")
 st.write(new_df00bk[MetricsTTotal])
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
 scaled_values = scaler.fit_transform(new_df00bk[MetricsTTotal])
 dfscaled = pd.DataFrame(scaled_values, columns=MetricsTTotal)
 dfscaledC = pd.concat([new_df00bk['matchID'], dfscaled], axis=1)
+
 st.write(dfscaledC)
 st.write(new_df00bk)
 
