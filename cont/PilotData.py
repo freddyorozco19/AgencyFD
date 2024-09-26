@@ -384,6 +384,7 @@ ax.plot([0, 0],[1, 69], color="w", ls="--", zorder=10, lw=0.5)
 #for metric, y in zip(MetricsTTotal, y_positions):
     #ax.scatter(dfscaledC[metric], [y] * len(dfscaledC), color="#FF0046", s=35, alpha=0.50, linewidth=0.5, zorder=3)
 # Graficar todas las columnas seleccionadas
+st.write(len(MetricsTTotal))
 for i, col in enumerate(MetricsTTotal):
     ax.scatter(dfscaledC[col], np.full(len(dfscaledC), 68 - i), 
                color="#FF0046", 
