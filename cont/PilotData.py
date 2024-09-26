@@ -274,9 +274,9 @@ st.dataframe(new_df10, column_config = column_config)
 st.divider()
 ############################################################################################################################################################################################################################
 df = new_df00bk
+df = df.sort_values(by='touches_total', ascending=False).reset_index(drop=True)
 MatchIDList = df['matchID'].drop_duplicates().tolist()
 MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
-df = df.sort_values(by='touches_total', ascending=False).reset_index(drop=True)
 scaler =  StandardScaler()
 #scaled_values1 = scaler.fit_transform(df['touches_total'].values.reshape(-1, 1))
 scaled_values = scaler.fit_transform(df[MetricsTTotal])
@@ -449,8 +449,6 @@ ax.scatter(dfscaledC['offsides_total'], [2]*len(dfscaledC), color = "#FF0046", s
 
 
 dfscaledC2 = dfscaledC[dfscaledC['matchID'] == MatchIDSel].reset_index(drop=True)
-st.write("SCALED2")
-st.write(dfscaledC2)
 ax.scatter(dfscaledC2['touches_total'], [68]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 ax.scatter(dfscaledC2['duels_accuracy_total'], [67]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
 ax.scatter(dfscaledC2['duels_won_total'], [66]*len(dfscaledC2), edgecolor="#121214", color="w", s=40, alpha=0.75, linewidth=0.5, zorder=3)
