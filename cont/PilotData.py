@@ -243,7 +243,7 @@ for column in columns_to_process:
     new_df00[new_column_name] = numeric_column.rank(pct=True, method='min')
     nuevas_columnas.append(new_column_name)
 
-st.dataframe(new_df00)
+#st.dataframe(new_df00)
 #st.write(nuevas_columnas)
 new_df10 = new_df00[['matchID', 'SelName'] + nuevas_columnas]
 #st.dataframe(new_df00[['matchID'] + nuevas_columnas])
