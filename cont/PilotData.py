@@ -281,6 +281,7 @@ st.write(df[MetricsTTotal])
 st.write("DESDE AQUjI")
 #st.write(new_df00bk[MetricsTTotal])
 df = df.sort_values(by='touches_total', ascending=False)
+st.write(df)
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
 scaled_values1 = scaler.fit_transform(df['touches_total'].values.reshape(-1, 1))
