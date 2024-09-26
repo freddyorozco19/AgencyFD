@@ -265,6 +265,8 @@ column_config = generate_progress_column_config(nuevas_columnas)
 st.dataframe(new_df10, column_config = column_config)
 st.divider()
 st.write(new_df10)
+MatchIDList = new_df00bk['matchID'].drop_duplicates().tolist()
+MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
 
 scaler =  StandardScaler()
 # Aplicar el escalador a todas las columnas al mismo tiempo
