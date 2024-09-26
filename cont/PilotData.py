@@ -378,7 +378,7 @@ for i in range(2, 69):  # Desde 2 hasta 68, inclusive
 ax.plot([0, 0],[1, 69], color="w", ls="--", zorder=10, lw=0.5)
 
 # Las posiciones en el eje y correspondientes
-y_positions = list(range(68, 67 - len(metrics), -1))
+y_positions = list(range(68, 67 - len(MetricsTTotal), -1))
 
 # Itera sobre las métricas y sus posiciones
 for metric, y in zip(MetricsTTotal, y_positions):
