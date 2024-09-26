@@ -275,7 +275,7 @@ st.divider()
 ############################################################################################################################################################################################################################
 df = new_df00bk
 df = df.sort_values(by='touches_total', ascending=False).reset_index(drop=True)
-df = df.replace('-', '')
+df['shots_accuracy_total'] = df['shots_accuracy_total'].replace('-', '')
 df['shots_accuracy_total'] = df['shots_accuracy_total'].astype('float64')
 MatchIDList = df['matchID'].drop_duplicates().tolist()
 MatchIDSel = st.selectbox('Choose MatchID:', MatchIDList)
