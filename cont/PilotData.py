@@ -190,7 +190,7 @@ def select_team(row):
 
 # Crear la nueva columna 'TeamSel'
 new_df00.insert(5, 'SelName', new_df00.apply(select_team, axis=1))
-new_df00 = new_df00[['date', 'matchID', 'home', 'away', 'SelName', 'TeamSelName', 'scorehome', 'scoreaway'] + MetricsTTotal]
+#new_df00 = new_df00[['date', 'matchID', 'home', 'away', 'SelName', 'TeamSelName', 'scorehome', 'scoreaway'] + MetricsTTotal]
 
 #new_df00['TeamSel'] = new_df00.apply(select_team, axis=1)
 st.dataframe(new_df00)
