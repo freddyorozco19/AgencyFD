@@ -378,7 +378,7 @@ ax.text(-7.5, 1.75, 'OFFSIDES',color='w', fontproperties=prop2, fontsize=5)
 for i in range(2, 69):  # Desde 2 hasta 68, inclusive
     ax.plot([-4, 4], [i, i], color=(0.403921568627451, 0.403921568627451, 0.4431372549019608, 0.25), zorder=2, lw=7)
 
-ax.plot([0, 0],[1, 69], color="w", ls="--", zorder=10, lw=0.5)
+ax.plot([0, 0],[1.5, 68.5], color="w", ls="--", zorder=10, lw=0.5)
 
 # Graficar todas las columnas seleccionadas
 MetricsTTotal_invertido = MetricsTTotal[::-1]
