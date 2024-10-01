@@ -390,7 +390,6 @@ for i, col in zip(range(2, 69), MetricsTTotal_invertido):  # Recorrer desde 2 ha
                linewidth=0.5, 
                zorder=3)
 
-
 dfscaledC2 = dfscaledC[dfscaledC['matchID'] == MatchIDSel].reset_index(drop=True)
 
 for i, col in zip(range(2, 69), MetricsTTotal_invertido):  # Recorrer desde 2 hasta 68
