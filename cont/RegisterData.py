@@ -54,8 +54,6 @@ def to_excel(df):
     processed_data = output.getvalue()
     return processed_data
 
-
-
 # Función para generar el enlace de descarga
 def get_download_link(row):
     val = to_excel(pd.DataFrame([row]))
@@ -134,5 +132,3 @@ range_name = 'AH!A1:Z1000'  # Reemplaza con el rango que deseas leer
 
 df2 = read_from_sheets(spreadsheet_id, range_name)
 st.dataframe(df2)
-
-
