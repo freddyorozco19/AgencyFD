@@ -112,7 +112,6 @@ gb.configure_column("URL",
 gridOptions = gb.build()
 AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
 
-
 # Define los alcances necesarios para la API de Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
