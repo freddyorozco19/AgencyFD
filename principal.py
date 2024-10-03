@@ -38,7 +38,6 @@ navigation_tree = {
     "Menu": [
         st.Page("cont/MatchAnalysis.py", title="Match Analysis", icon=":material/download:"),
         #st.Page("cont/OptaJoinData.py", title="Join Data", icon=":material/cell_merge:"),
-        #st.Page("cont/OptaExploreData.py", title="Explore Data", icon=":material/search_insights:"),
         st.Page("cont/PilotData.py", title="Pilot Data", icon=":material/analytics:"),        
         st.Page("cont/RegisterData.py", title="Register Data", icon=":material/leaderboard:")]
 }
