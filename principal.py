@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Apr  1 03:14:41 2023
-
 @author: Freddy J. Orozco R.
 @Powered: WinStats.
 """
