@@ -133,14 +133,14 @@ range_name = 'AH!A1:Z1000'  # Reemplaza con el rango que deseas leer
 df2 = read_from_sheets(spreadsheet_id, range_name)
 column_config = {
     "Register": st.column_config.LinkColumn(
-        "REGISTER",
+        "Register",
         display_text="Register Data",
         help="Haz click para observar los registros"
     ),
-    "BD": st.column_config.LinkColumn(
-        "SOURCE",
+    "Source": st.column_config.LinkColumn(
+        "Source",
         display_text="Source Data",
-        help="Haz click para observar la información"
+        help="Haz click para descargar la información"
     )
 }
 st.dataframe(df2, column_config=column_config)
