@@ -62,7 +62,6 @@ def get_download_link(row):
 
 # Agregar la columna de enlaces de descarga al DataFrame
 df['Descargar'] = df.apply(lambda row: get_download_link(row), axis=1)
-
 # Configurar la columna de descarga como un hipervínculo
 column_config = {
     "Descargar": st.column_config.LinkColumn(
