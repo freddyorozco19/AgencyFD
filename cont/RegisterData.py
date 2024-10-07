@@ -131,6 +131,7 @@ spreadsheet_id = '1igcRhzyqPU_Yp6lgb_bvhUuLNOJtd1NX5CZKpvLrDU4'  # Reemplaza con
 range_name = 'AH!A1:Z1000'  # Reemplaza con el rango que deseas leer
 
 df2 = read_from_sheets(spreadsheet_id, range_name)
+df2 = df2.sort_values(by='Priority')
 column_config = {
     "Register": st.column_config.LinkColumn(
         "Register",
