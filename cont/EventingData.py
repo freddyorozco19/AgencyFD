@@ -153,3 +153,12 @@ st.divider()
 menuopt01, menuopt02, menuopt03 = st.columns(3)
 with menuopt01:
     st.selectbox("Choose Player", ['Moisés Caicedo', 'Piero Hincapié', 'Gonzalo Plata'])
+
+
+
+container = st.container(border=True)
+container.write("This is inside the container")
+st.write("This is outside the container")
+
+# Now insert some more in the container
+container.write("This is inside too")
