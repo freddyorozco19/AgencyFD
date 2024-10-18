@@ -145,6 +145,11 @@ if uploaded_file is not None:
         df = pd.read_csv(uploaded_file, sep=';')
 else:
     df = pd.read_csv("Data/2022_4_Full.csv")
+
 ############################################################################################################################################################################################################################
 
 st.divider()
+
+menuopt01, menuopt02, menuopt03 = st.columns(3)
+with menuopt01:
+    st.selectbox("Choose Player", ['Moisés Caicedo', 'Piero Hincapié', 'Gonzalo Plata']
