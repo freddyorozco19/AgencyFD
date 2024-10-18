@@ -36,8 +36,7 @@ st.set_page_config(layout="wide")
 navigation_tree = {
     "Menu": [
         st.Page("cont/MatchAnalysis.py", title="Match Analysis", icon=":material/download:"),
-        st.Page("cont/EventingData.py", title="Eventing Data", icon=":material/cell_merge:"),
-        st.Page("cont/PilotData.py", title="Pilot Data", icon=":material/analytics:"),        
+        st.Page("cont/EventingData.py", title="Eventing Data", icon=":material/analytics:"),
         st.Page("cont/RegisterData.py", title="Register Data", icon=":material/leaderboard:")]
 }
 nav = st.navigation(navigation_tree, position="sidebar")
