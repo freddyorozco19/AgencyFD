@@ -160,6 +160,7 @@ with menuopt03:
 
 
 with st.container():
+    st.write("This is inside the container")
     menuoptcon01, menuoptcon02, menuoptcon03 = st.columns(3)
     with menuoptcon01:
         st.selectbox("Choose Metric", ['Actions', 'Passes', 'Shots', 'Def. Actions'])
