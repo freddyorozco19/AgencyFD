@@ -159,7 +159,7 @@ with menuopt03:
     st.selectbox("Choose MatchID", ['1', '2', '3'])
 
 
-with st.container():
+with st.container(border=True):
     st.write("This is inside the container")
     menuoptcon01, menuoptcon02, menuoptcon03 = st.columns(3)
     with menuoptcon01:
