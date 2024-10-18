@@ -153,6 +153,10 @@ st.divider()
 menuopt01, menuopt02, menuopt03 = st.columns(3)
 with menuopt01:
     st.selectbox("Choose Player", ['Moisés Caicedo', 'Piero Hincapié', 'Gonzalo Plata'])
+with menuopt02:
+    st.selectbox("Choose Competition", ['Premier League', 'Bundesliga', 'CONMEBOL Eliminatorias'])
+with menuopt03:
+    st.selectbox("Choose MatchID", ['1', '2', '3'])
 
 
 
