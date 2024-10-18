@@ -152,4 +152,4 @@ st.divider()
 
 menuopt01, menuopt02, menuopt03 = st.columns(3)
 with menuopt01:
-    st.selectbox("Choose Player", ['Moisés Caicedo', 'Piero Hincapié', 'Gonzalo Plata']
+    st.selectbox("Choose Player", ['Moisés Caicedo', 'Piero Hincapié', 'Gonzalo Plata'])
