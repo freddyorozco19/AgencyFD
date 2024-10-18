@@ -159,10 +159,14 @@ with menuopt03:
     st.selectbox("Choose MatchID", ['1', '2', '3'])
 
 
-
-container = st.container(border=True)
-container.write("This is inside the container")
-st.write("This is outside the container")
-
+with st.container():
+    menuoptcon01, menuoptcon02, menuoptcon03 = st.columns(3)
+    with menuoptcon01:
+        st.selectbox("Choose Metric", ['Actions', 'Passes', 'Shots', 'Def. Actions'])
+    with menuoptcon02:
+        st.selectbox("Choose Viz", ['1', '2', '3'])
+#container = st.container(border=True)
+#container.write("This is inside the container")
+#st.write("This is outside the container")
 # Now insert some more in the container
-container.write("This is inside too")
+#container.write("This is inside too")
