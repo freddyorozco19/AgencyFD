@@ -40,10 +40,11 @@ navigation_tree = {
         st.Page("cont/RegisterData.py", title="Register Data", icon=":material/leaderboard:")]
 }
 nav = st.navigation(navigation_tree, position="sidebar")
-st.link_button("Source", "https://t.ly/r78Av")
 
 nav.run()
 
-st.divider()
-
+with sidebar:
+    
+    st.divider()
+    st.link_button("Source", "https://t.ly/r78Av")
 
