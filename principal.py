@@ -34,7 +34,7 @@ import math
 ############################################################################################################################################################################################################################
 st.set_page_config(layout="wide")
 navigation_tree = {
-    "Menu": [
+    "SAMenu": [
         st.Page("cont/MatchAnalysis.py", title="Match Analysis", icon=":material/download:"),
         st.Page("cont/EventingData.py", title="Eventing Data", icon=":material/analytics:"),
         st.Page("cont/RegisterData.py", title="Register Data", icon=":material/leaderboard:")]
