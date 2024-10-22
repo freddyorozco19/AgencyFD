@@ -292,7 +292,7 @@ with st.container(border=True):
                 df.rename(columns={'X1':'Y1', 'Y1':'X1'}, inplace=True)
                 df = df[df['Y1'] >= 52.5].reset_index()
                 ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
-                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN CAMPO RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(34, 108, "" + PlayersFDSel.upper() + " - " + str(len(df)) + " TOQUES EN CAMPO RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax.set_ylim(52.3,110)
                 #Adding title
                 ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
@@ -411,7 +411,7 @@ with st.container(border=True):
                 ax9.set_ylim(0,10)
                 ax9.scatter(2, 5.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
                 ax9.text(2, 1.5, 'ACCIONES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
-                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN CAMPO RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(34, 108, "" + PlayersFDSel.upper() + " - " + str(len(df)) + " TOQUES EN CAMPO RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 dfKK = df
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
                 
@@ -452,7 +452,7 @@ with st.container(border=True):
                    iniciales += name[0] 
                 #names_iniciales = names_iniciales.squeeze().tolist()
                 ax.text(meanposx, meanposy, iniciales, color='k', fontproperties=prop2, fontsize=13, zorder=34, ha='center', va='center')
-                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 #Adding title
                 ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
                 ax9.axis("off")
@@ -474,7 +474,7 @@ with st.container(border=True):
                 pitch.heatmap_positional(bin_statistic, ax=ax, cmap=cmaps, edgecolors='#524F50', linewidth=1)
                 pitch.scatter(df.X1, df.Y1, c='w', s=15, alpha=0.02, ax=ax)
                 labels = pitch.label_heatmap(bin_statistic, color='#f4edf0', fontsize=14, fontproperties=prop2, ax=ax, ha='center', va='center', str_format='{:.0%}', path_effects=path_eff)
-                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
                 ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
                 ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
@@ -493,7 +493,7 @@ with st.container(border=True):
                 bin_statistic = pitch.bin_statistic(df['X1'], df['Y1'], statistic='count', bins=(120, 80))
                 bin_statistic['statistic'] = gaussian_filter(bin_statistic['statistic'], 4)
                 pcm = pitch.heatmap(bin_statistic, ax=ax, cmap=cmaps, edgecolors=(0,0,0,0), zorder=-2)    
-                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
                 ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
                 ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
@@ -521,7 +521,7 @@ with st.container(border=True):
                     cmap=cmaps)
     
                 #pcm = pitch.heatmap(bin_statistic, ax=ax, cmap=cmaps, edgecolors=(0,0,0,0), zorder=-2)    
-                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
                 ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
                 ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
@@ -541,7 +541,7 @@ with st.container(border=True):
                 ax.hlines(y=70, xmin=0, xmax=68, color='w', alpha=0.3, ls='--', zorder=-1)
                 #ax.add_patch(Rectangle((70, 0), 35, 68, fc="#000000", fill=True, alpha=0.7, zorder=-2))
                 ax.add_patch(Rectangle((0, 70), 68, 35, fc="#000000", fill=True, alpha=0.7, zorder=-2))
-                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN TERCIO FINAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(34, 108, "" + PlayersFDSel.upper() + " - " + str(len(df)) + " TOQUES EN TERCIO FINAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax.set_ylim(52.3,110)
                 #Adding title
                 ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
@@ -641,7 +641,7 @@ with st.container(border=True):
                     text_.set_path_effects(
                         [path_effects.Stroke(linewidth=2, foreground='k'), path_effects.Normal()]
                     )
-                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN TERCIO FINAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(34, 108, "" + PlayersFDSel.upper() + " - " + str(len(df)) + " TOQUES EN TERCIO FINAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax.set_ylim(52.3,110)
                 #Adding title
                 ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
@@ -676,7 +676,7 @@ with st.container(border=True):
                 df = df[condicion]
                 
                 ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
-                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN ÁREA RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(34, 108, "" + PlayersFDSel.upper() + " - " + str(len(df)) + " TOQUES EN ÁREA RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax.set_ylim(52.3,110)
                 #ax.vlines(x=88.5, ymin=13.84, ymax=54.16, color='w', alpha=1, ls='--', lw=2, zorder=-1)
                 #ax.vlines(x=105, ymin=13.84, ymax=54.16, color='w', alpha=1, ls='--', lw=2, zorder=-1)
