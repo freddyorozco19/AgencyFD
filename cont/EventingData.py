@@ -207,6 +207,7 @@ with st.container(border=True):
 #st.write("This is outside the container")
 # Now insert some more in the container
 #container.write("This is inside too")
+    df['EfectiveMinute'] = df['EfectiveMinute'].astype(int)
     MaxAddMin = df['EfectiveMinute'].max()
     if PlotVizSelFDData == "Actions":
         with menuoptcon02:
