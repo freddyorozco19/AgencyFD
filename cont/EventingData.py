@@ -198,7 +198,7 @@ with menuopt03:
 
 with st.container(border=True):
     st.write("This is inside the container")
-    menuoptcon01, menuoptcon02, menuoptcon03 = st.columns(3)
+    menuoptcon01, menuoptcon02, menuoptcon03, menuoptcon04 = st.columns(3)
     with menuoptcon01:
         PlotVizSelFDData = st.selectbox("Choose Metric", ['Actions', 'Passes', 'Shots', 'Def. Actions', 'Possession'])
    
@@ -212,12 +212,14 @@ with st.container(border=True):
         with menuoptcon02:
             OptionPlot = ['Touches Map', 'Touches Zones - Heatmap', 'Touches Gaussian - Heatmap', 'Touches Kernel - Heatmap', 'Territory Actions Map', 'Touches Opponent Field Map', 'Touches Opponent Field - Heatmap', 'Touches Final Third', 'Touches Final Third - Heatmap', 'Touches Penalty Area']
             OptionPlotSel = st.selectbox('Choose viz:', OptionPlot)
+        with menuoptcon03:
+            EfectMinSel = st.slider('Seleccionar rango de partido:', 0, MaxAddMin, (0, MaxAddMin))
         if OptionPlotSel == 'Territory Actions Map': 
-            with menuoptcon03:
+            with menuoptcon04:
                 ColorOptionSel = st.color_picker('Selecciona color:', '#FF0046')
                 colorviz = ColorOptionSel
         else:
-            with menuoptcon03:
+            with menuoptcon04:
                 SelOpt = ['WinStats', 'FD']
                 ColorOptionSel = st.selectbox('Selecciona color:', SelOpt)
         pltmain01, pltmain02 = st.columns(2)
