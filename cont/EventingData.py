@@ -117,6 +117,22 @@ def get_continuous_cmap(hex_list, float_list=None):
 
 #####################################################################################################################################################
 
+# Define los alcances necesarios para la API de Google Sheets
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+def read_from_sheets(spreadsheet_id, range_name):
+    """Lee datos de Google Sheets y devuelve un DataFrame usando una cuenta de servicio."""
+    creds = Credentials.from_service_account_file('cont/winstatspilot.json', scopes=SCOPES)
+    service = build('sheets', 'v4', credentials=creds)
+    try:
+        result = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
+        values = result.get('values', [])
+        return pd.DataFrame(values[1:], columns=values[0]) if values else None
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+#####################################################################################################################################################
+
 font_path = 'Resources/keymer-bold.otf'  # Your font path goes here
 font_manager.fontManager.addfont(font_path)
 prop2 = font_manager.FontProperties(fname=font_path)
@@ -152,9 +168,27 @@ else:
 
 st.divider()
 
+
+spreadsheet_id = '19im-aUSbVMeLgCgIGnsKPOvyJDiKbaE5SMIC_sDd4v4'  # Reemplaza con el ID de tu hoja de cálculo
+range_name = 'Hoja 1!A1:Z1000'  # Reemplaza con el rango que deseas leer
+
+df = read_from_sheets(spreadsheet_id, range_name)
+column_config = {
+    "Register": st.column_config.LinkColumn(
+        "Register",
+        display_text="Register Data",
+        help="Haz click para observar los registros"),
+    "Source": st.column_config.LinkColumn(
+        "Source",
+        display_text="Source Data",
+        help="Haz click para descargar la información")
+}
+st.dataframe(df2, column_config=column_config)
+
 menuopt01, menuopt02, menuopt03 = st.columns(3)
 with menuopt01:
-    st.selectbox("Choose Player", ['Moisés Caicedo', 'Piero Hincapié', 'Gonzalo Plata'])
+    PlayersFDList = df['Player'].drop_duplicates().tolist()
+    PlayersFDSel = st.selectbox("Choose Player", PlayersFDList)
 with menuopt02:
     st.selectbox("Choose Competition", ['Premier League', 'Bundesliga', 'CONMEBOL Eliminatorias'])
 with menuopt03:
@@ -174,39 +208,4 @@ with st.container(border=True):
 # Now insert some more in the container
 #container.write("This is inside too")
 
-# Define los alcances necesarios para la API de Google Sheets
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
-def read_from_sheets(spreadsheet_id, range_name):
-    """Lee datos de Google Sheets y devuelve un DataFrame usando una cuenta de servicio."""
-    creds = Credentials.from_service_account_file('cont/winstatspilot.json', scopes=SCOPES)
-    service = build('sheets', 'v4', credentials=creds)
-    
-    try:
-        result = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
-        values = result.get('values', [])
-        return pd.DataFrame(values[1:], columns=values[0]) if values else None
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
-
-# Ejemplo de uso
-spreadsheet_id = '19im-aUSbVMeLgCgIGnsKPOvyJDiKbaE5SMIC_sDd4v4'  # Reemplaza con el ID de tu hoja de cálculo
-range_name = 'Hoja 1!A1:Z1000'  # Reemplaza con el rango que deseas leer
-
-
-df2 = read_from_sheets(spreadsheet_id, range_name)
-#df2 = df2.sort_values(by='Priority')
-column_config = {
-    "Register": st.column_config.LinkColumn(
-        "Register",
-        display_text="Register Data",
-        help="Haz click para observar los registros"
-    ),
-    "Source": st.column_config.LinkColumn(
-        "Source",
-        display_text="Source Data",
-        help="Haz click para descargar la información"
-    )
-}
-st.dataframe(df2, column_config=column_config)
