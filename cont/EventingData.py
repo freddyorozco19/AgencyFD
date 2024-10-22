@@ -192,7 +192,8 @@ with menuopt01:
 with menuopt02:
     st.selectbox("Choose Competition", ['Premier League', 'Bundesliga', 'CONMEBOL Eliminatorias'])
 with menuopt03:
-    st.selectbox("Choose MatchID", ['1', '2', '3'])
+    MatchIDFDList = df['MatchID'].drop_duplicates().tolist()
+    MatchIDFDSel = st.selectbox("Choose MatchID", MatchIDFDList)
 
 
 with st.container(border=True):
