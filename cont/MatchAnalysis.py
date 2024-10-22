@@ -52,7 +52,7 @@ column_config = {
     "RD": st.column_config.LinkColumn(
         "RD",
         display_text="Register Data",
-        help="Haz clic para descargar los datos de esta fila",
+        help="Haz clic para descargar los datos de esta fila"
     )
 }
 # Muestra el DataFrame con la columna de hipervínculos
