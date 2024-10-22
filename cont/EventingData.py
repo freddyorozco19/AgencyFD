@@ -179,7 +179,6 @@ with menuopt03:
 
 
 with st.container(border=True):
-    st.write("This is inside the container")
     menuoptcon01, menuoptcon02, menuoptcon03, menuoptcon04 = st.columns(4)
     with menuoptcon01:
         PlotVizSelFDData = st.selectbox("Choose Metric", ['Actions', 'Passes', 'Shots', 'Def. Actions', 'Possession'])
@@ -281,5 +280,415 @@ with st.container(border=True):
                 ax9.set_ylim(0,10)
                 ax9.scatter(2, 4.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
                 ax9.text(2, 0, 'ACCIONES\nREALIZADAS', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+
+            if OptionPlotSel == 'Touches Opponent Field Map':
+            
+                #df = df.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
+                #dfKKcleaned = df
+                df = df.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
+                #dfKKcleaned = df
+                df.rename(columns={'X1':'Y1', 'Y1':'X1'}, inplace=True)
+                df = df[df['Y1'] >= 52.5].reset_index()
+                ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
+                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN CAMPO RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.set_ylim(52.3,110)
+                #Adding title
+                ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                ax9.scatter(2, 5.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+                ax9.text(2, 1.5, 'ACCIONES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+    
+            if OptionPlotSel == 'Touches Opponent Field - Heatmap':
+    
+                df = df.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
+                #dfKKcleaned = df
+                df.rename(columns={'X1':'Y1', 'Y1':'X1'}, inplace=True)
+                df = df[df['Y1'] >= 52.5].reset_index()
+                zone_areas = {
+                    'zone_1': {'x_lower_bound': 54.16, 'x_upper_bound': 68, 'y_lower_bound': 88.5, 'y_upper_bound': 105},
+                    'zone_2': {'x_lower_bound': 0, 'x_upper_bound': 13.84, 'y_lower_bound': 88.5, 'y_upper_bound': 105},
+                    'zone_3': {'x_lower_bound': 54.16, 'x_upper_bound': 68, 'y_lower_bound': 70.5, 'y_upper_bound': 88.5},
+                    'zone_4': {'x_lower_bound': 0, 'x_upper_bound': 13.84, 'y_lower_bound': 70.5, 'y_upper_bound': 88.5},
+                    'zone_5': {'x_lower_bound': 43.16, 'x_upper_bound': 54.16, 'y_lower_bound': 88.5, 'y_upper_bound': 105},
+                    'zone_6': {'x_lower_bound': 13.84, 'x_upper_bound': 24.84, 'y_lower_bound': 88.5, 'y_upper_bound': 105},
+                    'zone_7': {'x_lower_bound': 24.84, 'x_upper_bound': 43.16, 'y_lower_bound': 88.5, 'y_upper_bound': 105},
+                    'zone_8': {'x_lower_bound': 24.84, 'x_upper_bound': 43.16, 'y_lower_bound': 70.5, 'y_upper_bound': 88.5},
+                    'zone_9': {'x_lower_bound': 43.16, 'x_upper_bound': 54.16, 'y_lower_bound': 70.5, 'y_upper_bound': 88.5},
+                    'zone_10': {'x_lower_bound': 13.84, 'x_upper_bound': 24.84, 'y_lower_bound': 70.5, 'y_upper_bound': 88.5},
+                    'zone_11': {'x_lower_bound': 43.16, 'x_upper_bound': 54.16, 'y_lower_bound': 52.5, 'y_upper_bound': 70.5},
+                    'zone_12': {'x_lower_bound': 13.84, 'x_upper_bound': 24.84, 'y_lower_bound': 52.5, 'y_upper_bound': 70.5},
+                    'zone_13': {'x_lower_bound': 54.16, 'x_upper_bound': 68, 'y_lower_bound': 52.5, 'y_upper_bound': 70.5},
+                    'zone_14': {'x_lower_bound': 0, 'x_upper_bound': 13.84, 'y_lower_bound': 52.5, 'y_upper_bound': 70.5},
+                    'zone_15': {'x_lower_bound': 24.84, 'x_upper_bound': 43.16, 'y_lower_bound': 52.5, 'y_upper_bound': 70.5}
+                }
+                
+                def assign_action_zone(x,y):
+                    '''
+                    This function returns the zone based on the x & y coordinates of the shot
+                    taken.
+                    Args:
+                        - x (float): the x position of the shot based on a vertical grid.
+                        - y (float): the y position of the shot based on a vertical grid.
+                    '''
+                    global zone_areas
+                    # Conditions
+                    for zone in zone_areas:
+                        if (x >= zone_areas[zone]['x_lower_bound']) & (x <= zone_areas[zone]['x_upper_bound']):
+                            if (y >= zone_areas[zone]['y_lower_bound']) & (y <= zone_areas[zone]['y_upper_bound']):
+                                return zone
+                
+                zone_colors = {
+                    'zone_1': 'black',
+                    'zone_2': 'red',
+                    'zone_3': 'blue',
+                    'zone_4': 'yellow',
+                    'zone_5': 'green',
+                    'zone_6': 'pink',
+                    'zone_7': 'purple',
+                    'zone_8': 'grey',
+                    'zone_9': 'brown',
+                    'zone_10': 'lightblue',
+                    'zone_11': 'lightcyan',
+                    'zone_12': 'lightgrey',
+                    'zone_13': 'w',
+                    'zone_14': 'orange',
+                    'zone_15': 'cyan'
+                }
+                
+                #df = df[df['y'] >= 52.5].reset_index()
+                df['zone_area'] = [assign_action_zone(x,y) for x,y in zip(df['X1'], df['Y1'])]
+                data = df.groupby(['zone_area']).apply(lambda x: x.shape[0]).reset_index()
+                data.rename(columns={0:'num_actions'}, inplace=True)
+                data['pct_actions'] = data['num_actions']/df['Event'].count()
+                # Asegurar que todas las zonas estén representadas
+                all_zones = pd.DataFrame({'zone_area': zone_areas.keys()})
+                plot_df = all_zones.merge(data, on='zone_area', how='left').fillna(0)
+                max_value = plot_df['pct_actions'].max()
+                for zone in zone_areas:
+                    action_pct = plot_df[plot_df['zone_area'] == zone]['pct_actions'].iloc[0] if zone in plot_df['zone_area'].values else 0
+                    x_lim = [zone_areas[zone]['x_lower_bound'], zone_areas[zone]['x_upper_bound']]
+                    y1 = zone_areas[zone]['y_lower_bound']
+                    y2 = zone_areas[zone]['y_upper_bound']
+                    # Si el porcentaje es 0, no dibujamos el fondo de color
+                    if action_pct > 0:
+                        ax.fill_between(
+                            x=x_lim, 
+                            y1=y1, y2=y2, 
+                            color=colorviz, alpha=(action_pct/max_value),
+                            zorder=0, ec='None')
+                    x_pos = x_lim[0] + abs(x_lim[0] - x_lim[1])/2
+                    y_pos = y1 + abs(y1 - y2)/2
+                    text_ = ax.annotate(
+                        xy=(x_pos, y_pos),
+                        text=f'{action_pct:.0%}',
+                        ha='center',
+                        va='center',
+                        color='w',
+                        fontproperties=prop2,
+                        size=20
+                    )
+                    text_.set_path_effects(
+                        [path_effects.Stroke(linewidth=1.0, foreground='k'), path_effects.Normal()]
+                    )
+                ax.plot([13.84, 13.84], [52.5, 105], ls='--', color='#9F9F9F')
+                ax.plot([54.16, 54.16], [52.5, 105], ls='--', color='#9F9F9F')
+                ax.plot([24.84, 24.84], [52.5, 105], ls='--', color='#9F9F9F')
+                ax.plot([43.16, 43.16], [52.5, 105], ls='--', color='#9F9F9F')
+                ax.plot([0, 68], [88.5, 88.5], ls='--', color='#9F9F9F')
+                ax.plot([0, 68], [70.5, 70.5], ls='--', color='#9F9F9F')
+                ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
+                ax.set_ylim(52.3,110)
+                #Adding title
+                ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                ax9.scatter(2, 5.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+                ax9.text(2, 1.5, 'ACCIONES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN CAMPO RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+                
+            if OptionPlotSel == 'Territory Actions Map': 
+    
+                #df = df.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
+                #dfKKcleaned = df
+    
+                df = df[df['Event'] != 'Assists'].reset_index(drop=True)
+                dfKKcleaned = df
+                scaler  = StandardScaler()
+                defpoints1 = df[['X1', 'Y1']].values
+                defpoints2 = scaler.fit_transform(defpoints1)
+                df2 = pd.DataFrame(defpoints2, columns = ['Xstd', 'Ystd'])
+                df3 = pd.concat([df, df2], axis=1)
+                df5=df3
+                df3 = df3[df3['Xstd'] <= 1]
+                df3 = df3[df3['Xstd'] >= -1]
+                df3 = df3[df3['Ystd'] <= 1]
+                df3 = df3[df3['Ystd'] >= -1].reset_index()
+                df9 = df
+                df = df3
+                defpoints = df[['X1', 'Y1']].values
+                #st.write(defpoints)
+                hull = ConvexHull(df[['X1','Y1']])        
+                ax.scatter(df9['X1'], df9['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
+                #Loop through each of the hull's simplices
+                for simplex in hull.simplices:
+                    #Draw a black line between each
+                    ax.plot(defpoints[simplex, 0], defpoints[simplex, 1], '#BABABA', lw=2, zorder = 1, ls='--')
+                ax.fill(defpoints[hull.vertices,0], defpoints[hull.vertices,1], colorviz, alpha=0.7)
+                meanposx = df9['X1'].mean()
+                meanposy = df9['Y1'].mean()
+                ax.scatter(meanposx, meanposy, s=1000, color="w", edgecolors=colorviz, lw=2.5, zorder=25, alpha=0.95)
+                names = PlayerSelExpData.split()
+                iniciales = ""
+                for name in names:
+                   iniciales += name[0] 
+                #names_iniciales = names_iniciales.squeeze().tolist()
+                ax.text(meanposx, meanposy, iniciales, color='k', fontproperties=prop2, fontsize=13, zorder=34, ha='center', va='center')
+                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                #Adding title
+                ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                ax9.scatter(2, 5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+                ax9.text(2, -0.5, 'ACCIONES \nREALIZADAS', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                ax9.scatter(8, 5, s=320, color=colorviz, edgecolors='#FFFFFF', lw=1, ls='--', marker='h')
+                ax9.text(8, -0.5, 'TERRITORIO\nRECURRENTE', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+    
+            elif OptionPlotSel == 'Touches Zones - Heatmap':
+                df = df[df['Event'] != 'Assists'].reset_index(drop=True)
+                dfKKcleaned = df
+    
+                path_eff = [path_effects.Stroke(linewidth=2, foreground='black'), path_effects.Normal()]
+                bin_statistic = pitch.bin_statistic_positional(df.X1, df.Y1, statistic='count', positional='full', normalize=True)
+                pitch.heatmap_positional(bin_statistic, ax=ax, cmap=cmaps, edgecolors='#524F50', linewidth=1)
+                pitch.scatter(df.X1, df.Y1, c='w', s=15, alpha=0.02, ax=ax)
+                labels = pitch.label_heatmap(bin_statistic, color='#f4edf0', fontsize=14, fontproperties=prop2, ax=ax, ha='center', va='center', str_format='{:.0%}', path_effects=path_eff)
+                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
+                ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
+                ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
+                ax9.scatter(3.25,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.2)
+                ax9.text(5, 0, '-  ACCIONES REALIZADAS  +', c='w', fontproperties=prop2, fontsize=9, ha='center')
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+    
+            elif OptionPlotSel == 'Touches Gaussian - Heatmap':
+                df = df[df['Event'] != 'Assists'].reset_index(drop=True)
+                dfKKcleaned = df
+    
+                bin_statistic = pitch.bin_statistic(df['X1'], df['Y1'], statistic='count', bins=(120, 80))
+                bin_statistic['statistic'] = gaussian_filter(bin_statistic['statistic'], 4)
+                pcm = pitch.heatmap(bin_statistic, ax=ax, cmap=cmaps, edgecolors=(0,0,0,0), zorder=-2)    
+                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
+                ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
+                ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
+                ax9.scatter(3.25,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.2)
+                ax9.text(5, 0, '-  ACCIONES REALIZADAS  +', c='w', fontproperties=prop2, fontsize=9, ha='center')
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+                
+            elif OptionPlotSel == 'Touches Kernel - Heatmap':
+                
+                df = df[df['Event'] != 'Assists'].reset_index(drop=True)
+                dfKKcleaned = df
+                #bin_statistic = pitch.bin_statistic(df['X1'], df['Y1'], statistic='count', bins=(120, 80))
+                #bin_statistic['statistic'] = gaussian_filter(bin_statistic['statistic'], 4)
+                kde = pitch.kdeplot(dfKKcleaned.X1, dfKKcleaned.Y1, ax=ax,
+                    # fill using 100 levels so it looks smooth
+                    fill=True, levels=500,
+                    # shade the lowest area so it looks smooth
+                    # so even if there are no events it gets some color
+                    thresh=0,
+                    cut=2, alpha=0.7, zorder=-2,  # extended the cut so it reaches the bottom edge
+                    cmap=cmaps)
+    
+                #pcm = pitch.heatmap(bin_statistic, ax=ax, cmap=cmaps, edgecolors=(0,0,0,0), zorder=-2)    
+                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKKcleaned)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
+                ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
+                ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
+                ax9.scatter(3.25,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.2)
+                ax9.text(5, 0, '-  ACCIONES REALIZADAS  +', c='w', fontproperties=prop2, fontsize=9, ha='center')
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+    
+            if OptionPlotSel == 'Touches Final Third':
+    
+                df.rename(columns={'X1':'Y1', 'Y1':'X1', 'X2':'Y2', 'Y2':'X2'}, inplace=True)            
+                df = df[df['Y1'] >= 70].reset_index()
+                ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
+                ax.hlines(y=70, xmin=0, xmax=68, color='w', alpha=0.3, ls='--', zorder=-1)
+                #ax.add_patch(Rectangle((70, 0), 35, 68, fc="#000000", fill=True, alpha=0.7, zorder=-2))
+                ax.add_patch(Rectangle((0, 70), 68, 35, fc="#000000", fill=True, alpha=0.7, zorder=-2))
+                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN TERCIO FINAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.set_ylim(52.3,110)
+                #Adding title
+                ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                ax9.scatter(2, 5.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+                ax9.text(2, 1.5, 'ACCIONES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+    
+            if OptionPlotSel == 'Touches Final Third - Heatmap':
+                
+                ax.plot([13.84, 13.84], [70, 105], ls='--', color='w')
+                ax.plot([54.16, 54.16], [70, 105], ls='--', color='w')
+                ax.plot([24.84, 24.84], [70, 105], ls='--', color='w')
+                ax.plot([43.16, 43.16], [70, 105], ls='--', color='w')
+                ax.plot([0, 68], [70, 70], ls='--', color='w')
+        
+                zone_areas = {
+                    'zone_1': {
+                        'x_lower_bound': 54.16, 'x_upper_bound': 68,
+                        'y_lower_bound': 70, 'y_upper_bound': 105,
+                    },
+                    'zone_2': {
+                        'x_lower_bound': 0, 'x_upper_bound': 13.84,
+                        'y_lower_bound': 70, 'y_upper_bound': 105,
+                    },
+                    'zone_3': {
+                        'x_lower_bound': 43.16, 'x_upper_bound': 54.16,
+                        'y_lower_bound': 70, 'y_upper_bound': 105,
+                    },
+                    'zone_4': {
+                        'x_lower_bound': 13.84, 'x_upper_bound': 24.84,
+                        'y_lower_bound': 70, 'y_upper_bound': 105,
+                    },
+                    'zone_5': {
+                        'x_lower_bound': 24.84, 'x_upper_bound': 43.16,
+                        'y_lower_bound': 70, 'y_upper_bound': 105,
+                    }
+                }
+                
+                def assign_action_zone(x,y):
+                    '''
+                    This function returns the zone based on the x & y coordinates of the shot
+                    taken.
+                    Args:
+                        - x (float): the x position of the shot based on a vertical grid.
+                        - y (float): the y position of the shot based on a vertical grid.
+                    '''
+                
+                    global zone_areas
+                
+                    # Conditions
+                
+                    for zone in zone_areas:
+                        if (x >= zone_areas[zone]['x_lower_bound']) & (x <= zone_areas[zone]['x_upper_bound']):
+                            if (y >= zone_areas[zone]['y_lower_bound']) & (y <= zone_areas[zone]['y_upper_bound']):
+                                return zone
+                
+                df.rename(columns={'X1':'Y1', 'Y1':'X1', 'X2':'Y2', 'Y2':'X2'}, inplace=True)            
+                df = df[df['Y1'] >= 70].reset_index()
+                df['zone_area'] = [assign_action_zone(x,y) for x,y in zip(df['X1'], df['Y1'])]
+                
+                # Asegurar que todas las zonas estén representadas
+                all_zones = pd.DataFrame({'zone_area': zone_areas.keys()})
+                data1 = df.groupby(['zone_area']).size().reset_index(name='num_actions')
+                data1['pct_actions'] = data1['num_actions'] / df['Event'].count()
+                plot_df1 = all_zones.merge(data1, on='zone_area', how='left').fillna(0)
+                
+                max_value1 = plot_df1['pct_actions'].max()
+                
+                for zone in zone_areas:
+                    action_pct = plot_df1[plot_df1['zone_area'] == zone]['pct_actions'].iloc[0]
+                    x_lim = [zone_areas[zone]['x_lower_bound'], zone_areas[zone]['x_upper_bound']]
+                    y1 = zone_areas[zone]['y_lower_bound']
+                    y2 = zone_areas[zone]['y_upper_bound']
+                    
+                    if action_pct > 0:
+                        ax.fill_between(
+                            x=x_lim, 
+                            y1=y1, y2=y2, 
+                            color='#F00040', alpha=(action_pct/max_value1),
+                            zorder=0, ec='None')
+                    
+                    x_pos = x_lim[0] + abs(x_lim[0] - x_lim[1])/2
+                    y_pos = y1 + abs(y1 - y2)/2
+                    text_ = ax.annotate(
+                        xy=(x_pos, y_pos),
+                        text=f'{action_pct:.0%}',
+                        ha='center',
+                        va='center',
+                        color='w',
+                        fontproperties=prop2,
+                        size=25
+                    )
+                    text_.set_path_effects(
+                        [path_effects.Stroke(linewidth=2, foreground='k'), path_effects.Normal()]
+                    )
+                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN TERCIO FINAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.set_ylim(52.3,110)
+                #Adding title
+                ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                ax9.scatter(2, 5.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+                ax9.text(2, 1.5, 'ACCIONES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+    
+            if OptionPlotSel == 'Touches Penalty Area':
+    
+                df.rename(columns={'X1':'Y1', 'Y1':'X1', 'X2':'Y2', 'Y2':'X2'}, inplace=True)            
+                # Coordenadas del cuadrilátero
+                #x1_cuadrilatero, y1_cuadrilatero = 88.5, 13.84
+                x1_cuadrilatero, y1_cuadrilatero = 13.84, 88.5
+                #x2_cuadrilatero, y2_cuadrilatero = 105, 13.84
+                x2_cuadrilatero, y2_cuadrilatero = 13.84, 105
+                #x3_cuadrilatero, y3_cuadrilatero = 88.5, 54.16
+                x3_cuadrilatero, y3_cuadrilatero = 54.16, 88.5
+                #x4_cuadrilatero, y4_cuadrilatero = 105, 54.16
+                x4_cuadrilatero, y4_cuadrilatero = 54.16, 105
+                condicion = (
+                    (df['Y1'] >= y1_cuadrilatero) &   # X2 debe ser mayor o igual que x1_cuadrilatero
+                    (df['X1'] >= x1_cuadrilatero) &   # Y2 debe ser mayor o igual que y1_cuadrilatero
+                    (df['Y1'] <= y4_cuadrilatero) &   # X2 debe ser menor o igual que x4_cuadrilatero
+                    (df['X1'] <= x3_cuadrilatero)     # Y2 debe ser menor o igual que y3_cuadrilatero
+                )
+                
+                # Aplicar las condiciones para filtrar el DataFrame
+                df = df[condicion]
+                
+                ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
+                ax.text(34, 108, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES EN ÁREA RIVAL", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.set_ylim(52.3,110)
+                #ax.vlines(x=88.5, ymin=13.84, ymax=54.16, color='w', alpha=1, ls='--', lw=2, zorder=-1)
+                #ax.vlines(x=105, ymin=13.84, ymax=54.16, color='w', alpha=1, ls='--', lw=2, zorder=-1)
+                #ax.hlines(xmin=88.5, xmax=105, y=54.16, color='w', alpha=1, ls='--', lw=2, zorder=-1)
+                #ax.hlines(xmin=88.5, xmax=105, y=13.84, color='w', alpha=1, ls='--', lw=2, zorder=-1)
+                #ax.add_patch(Rectangle((88.5, 13.84), 16.5, 40.32, fc="#000000", fill=True, alpha=0.7, zorder=-2))
+                #Adding title
+                ax9 = fig.add_axes([0.16,0.135,0.20,0.07])
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                ax9.scatter(2, 5.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+                ax9.text(2, 1.5, 'ACCIONES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
                 dfKK = df
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
