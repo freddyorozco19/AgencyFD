@@ -198,7 +198,7 @@ with menuopt03:
 
 with st.container(border=True):
     st.write("This is inside the container")
-    menuoptcon01, menuoptcon02, menuoptcon03, menuoptcon04 = st.columns(3)
+    menuoptcon01, menuoptcon02, menuoptcon03, menuoptcon04 = st.columns(4)
     with menuoptcon01:
         PlotVizSelFDData = st.selectbox("Choose Metric", ['Actions', 'Passes', 'Shots', 'Def. Actions', 'Possession'])
    
