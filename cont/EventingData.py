@@ -200,13 +200,15 @@ with st.container(border=True):
     st.write("This is inside the container")
     menuoptcon01, menuoptcon02, menuoptcon03 = st.columns(3)
     with menuoptcon01:
-        st.selectbox("Choose Metric", ['Actions', 'Passes', 'Shots', 'Def. Actions'])
-    with menuoptcon02:
-        st.selectbox("Choose Viz", ['1', '2', '3'])
+        PlotVizSelFDData = st.selectbox("Choose Metric", ['Actions', 'Passes', 'Shots', 'Def. Actions', 'Possession'])
+   
 #container = st.container(border=True)
 #container.write("This is inside the container")
 #st.write("This is outside the container")
 # Now insert some more in the container
 #container.write("This is inside too")
-
+    MaxAddMin = df['EfectiveMinute'].max()
+    if PlotVizSelFDData == "Actions":
+        with menuoptcon02:
+            st.selectbox("Choose Viz", ['1', '2', '3'])
 
