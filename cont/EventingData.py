@@ -23,6 +23,8 @@ from PIL import Image
 from matplotlib.patches import Rectangle
 import math
 import altair as alt
+from google.oauth2.service_account import Credentials
+from googleapiclient.discovery import build
 
 ############################################################################################################################################################################################################################
 def split_minute(minute_str):
