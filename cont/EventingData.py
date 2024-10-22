@@ -210,5 +210,15 @@ with st.container(border=True):
     MaxAddMin = df['EfectiveMinute'].max()
     if PlotVizSelFDData == "Actions":
         with menuoptcon02:
-            st.selectbox("Choose Viz", ['1', '2', '3'])
+            OptionPlot = ['Touches Map', 'Touches Zones - Heatmap', 'Touches Gaussian - Heatmap', 'Touches Kernel - Heatmap', 'Territory Actions Map', 'Touches Opponent Field Map', 'Touches Opponent Field - Heatmap', 'Touches Final Third', 'Touches Final Third - Heatmap', 'Touches Penalty Area']
+            OptionPlotSel = st.selectbox('Choose viz:', OptionPlot)
+        if OptionPlotSel == 'Territory Actions Map': 
+            with menuoptcon03:
+                ColorOptionSel = st.color_picker('Selecciona color:', '#FF0046')
+                colorviz = ColorOptionSel
+        else:
+            with menuoptcon03:
+                SelOpt = ['WinStats', 'FD']
+                ColorOptionSel = st.selectbox('Selecciona color:', SelOpt)
+        pltmain01, pltmain02 = st.columns(2)
 
