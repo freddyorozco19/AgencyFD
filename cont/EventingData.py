@@ -446,7 +446,7 @@ with st.container(border=True):
                 meanposx = df9['X1'].mean()
                 meanposy = df9['Y1'].mean()
                 ax.scatter(meanposx, meanposy, s=1000, color="w", edgecolors=colorviz, lw=2.5, zorder=25, alpha=0.95)
-                names = PlayersFDList.split()
+                names = PlayersFDSel.split()
                 iniciales = ""
                 for name in names:
                    iniciales += name[0] 
