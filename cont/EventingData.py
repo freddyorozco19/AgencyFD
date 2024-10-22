@@ -147,27 +147,9 @@ prop3 = font_manager.FontProperties(fname=font_path2)
 
 st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
 st.header("EVENTING DATA")
-
-with st.form(key='form4'):
-    formdata01, formdata02 = st.columns(2)
-    with formdata01:
-        uploaded_file = st.file_uploader("Choose a csv file", type="csv")
-    with formdata02:
-        DataMode = st.checkbox("Activate comma separator")
-    submit_button2 = st.form_submit_button(label='Aceptar')
-
-if uploaded_file is not None:
-    if DataMode:
-        df = pd.read_csv(uploaded_file, sep=',')
-    else:
-        df = pd.read_csv(uploaded_file, sep=';')
-else:
-    df = pd.read_csv("Data/2022_4_Full.csv")
-
-############################################################################################################################################################################################################################
-
 st.divider()
 
+############################################################################################################################################################################################################################
 
 spreadsheet_id = '19im-aUSbVMeLgCgIGnsKPOvyJDiKbaE5SMIC_sDd4v4'  # Reemplaza con el ID de tu hoja de cálculo
 range_name = 'Hoja 1!A1:Z1000'  # Reemplaza con el rango que deseas leer
