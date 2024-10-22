@@ -183,7 +183,7 @@ column_config = {
         display_text="Source Data",
         help="Haz click para descargar la información")
 }
-st.dataframe(df2, column_config=column_config)
+st.dataframe(df, column_config=column_config)
 
 menuopt01, menuopt02, menuopt03 = st.columns(3)
 with menuopt01:
