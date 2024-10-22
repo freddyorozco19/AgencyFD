@@ -33,7 +33,7 @@ import math
 
 ############################################################################################################################################################################################################################
 st.set_page_config(layout="wide")
-st.logo("Img/FootballDivisionWorldwide-removebg-preview.png")
+st.logo("Resources/Img/FootballDivisionWorldwide-removebg-preview.png")
 
 navigation_tree = {
     "Menu": [
