@@ -33,6 +33,8 @@ import math
 
 ############################################################################################################################################################################################################################
 st.set_page_config(layout="wide")
+st.logo("Img/FootballDivisionWorldwide-removebg-preview.png")
+
 navigation_tree = {
     "Menu": [
         st.Page("cont/MatchAnalysis.py", title="Match Analysis", icon=":material/download:"),
@@ -44,4 +46,3 @@ nav = st.navigation(navigation_tree, position="sidebar")
 nav.run()
 
 st.sidebar.link_button("Source", "https://t.ly/r78Av")
-st.logo("Img/FootballDivisionWorldwide-removebg-preview.png")
