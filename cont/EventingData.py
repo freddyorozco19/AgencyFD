@@ -191,8 +191,8 @@ def read_from_sheets(spreadsheet_id, range_name):
         return None
 
 # Ejemplo de uso
-spreadsheet_id = '1igcRhzyqPU_Yp6lgb_bvhUuLNOJtd1NX5CZKpvLrDU4'  # Reemplaza con el ID de tu hoja de cálculo
-range_name = 'AH!A1:Z1000'  # Reemplaza con el rango que deseas leer
+spreadsheet_id = '1TN5GqCfqmFZ_63wj_8mrs7FnR-w5iRXcx37OH6G-0FU'  # Reemplaza con el ID de tu hoja de cálculo
+range_name = 'Hoja1!A1:Z1000'  # Reemplaza con el rango que deseas leer
 
 df2 = read_from_sheets(spreadsheet_id, range_name)
 df2 = df2.sort_values(by='Priority')
