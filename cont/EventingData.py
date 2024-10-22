@@ -208,10 +208,11 @@ with st.container(border=True):
 # Now insert some more in the container
 #container.write("This is inside too")
     df['EfectiveMinute'] = df['EfectiveMinute'].astype(int)
-    df['X1'] = df['X1'].astype(float)
-    df['Y1'] = df['Y1'].astype(float)
-    df['X2'] = df['X2'].astype(float)
-    df['Y2'] = df['Y2'].astype(float)
+    df['X1'] = df['X1'].str.replace(',','.').astype(float)
+    df['Y1'] = df['Y1'].str.replace(',','.').astype(float)
+    df['X2'] = df['X2'].str.replace(',','.').astype(float)
+    df['Y2'] = df['Y2'].str.replace(',','.').astype(float)
+
     MaxAddMin = df['EfectiveMinute'].max()
     if PlotVizSelFDData == "Actions":
         with menuoptcon02:
