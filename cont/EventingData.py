@@ -692,3 +692,219 @@ with st.container(border=True):
                 ax9.text(2, 1.5, 'ACCIONES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
                 dfKK = df
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+
+    if PlotVizSelFDData == "Shots":
+    pltmnop01, pltmnop02, pltmnop03 = st.columns(3)
+    with pltmnop01:
+        OptionPlot = ['Shots Map', 'Shots Heatmap - Zones', 'Shots Heatmap - Gaussian']
+        OptionPlotSel = st.selectbox('Seleccionar tipo gráfico:', OptionPlot)
+    if OptionPlotSel == 'Shots Map': 
+        with pltmnop03:
+            ColorOptionSel = st.color_picker('Selecciona color:', '#FF0046')
+            colorviz = ColorOptionSel
+    else:
+        with pltmnop03:
+            SelOpt = ['WinStats', 'FD']
+            ColorOptionSel = st.selectbox('Selecciona color:', SelOpt)
+    pltmain01, pltmain02 = st.columns(2)
+    with pltmain01:
+
+        fig, ax = mplt.subplots(figsize=(8, 8), dpi = 800)
+        ax.axis("off")
+        fig.patch.set_visible(False)
+        if (OptionPlotSel == 'Shots Heatmap - Gaussian') | (OptionPlotSel == 'Shots Heatmap - Zones'):
+            pitch = VerticalPitch(pitch_color='None', pitch_type='custom', line_zorder=1, linewidth=1.0, goal_type='box', pitch_length=105, pitch_width=68)
+        else:
+            pitch = Pitch(pitch_color='None', pitch_type='custom', line_zorder=1, linewidth=1.0, goal_type='box', pitch_length=105, pitch_width=68)
+            #Adding directon arrow
+            ax29 = fig.add_axes([0.368,0.22,0.3,0.05])
+            ax29.axis("off")
+            ax29.set_xlim(0,10)
+            ax29.set_ylim(0,10)
+            ax29.annotate('', xy=(2, 6), xytext=(8, 6), arrowprops=dict(arrowstyle='<-', ls= '-', lw = 1, color = (1,1,1,0.5)))
+            #ax29.annotate(s='', xy=(2, 5), xytext=(8, 5), arrowprops=dict(arrowstyle='<-', ls= '-', lw = 1, color = (1,1,1,0.5)))
+            ax29.text(5, 2, 'Dirección campo de juego', fontproperties=prop3, c=(1,1,1,0.5), fontsize=10, ha='center')
+        pitch.draw(ax=ax)
+        
+        #Adding winstats logo
+        ax53 = fig.add_axes([0.82, 0.135, 0.05, 0.05])
+        url53 = "https://i.postimg.cc/R0QjGByL/sZggzUM.png"
+        response = requests.get(url53)
+        img = Image.open(BytesIO(response.content))
+        ax53.imshow(img)
+        ax53.axis("off")
+        ax53.set_facecolor("#000")
+        #st.dataframe(dfDOWN)
+        #df = df[(df['EfectiveMinute'] >= EfectMinSel[0]) & (df['EfectiveMinute'] <= EfectMinSel[1])]
+
+        df = df[(df['Event'] == 'Goals') | (df['Event'] == 'Shots on target') | (df['Event'] == 'Shots off target') | (df['Event'] == 'Blocks')].reset_index(drop=True)
+        df = df[df['MatchID'].isin(ListMatchSel)]
+        dfKK = df
+        if ColorOptionSel == 'WinStats':
+            hex_list2 = ['#121214', '#D81149', '#FF0050']
+            hex_list = ['#121214', '#545454', '#9F9F9F']
+            colorviz = "#FF0050"
+            # Definir los colores base con transparencias diferentes
+            red = [0.0705882352941176, 0.0705882352941176, 0.0784313725490196, 0]   # 121214
+            green = [0.6, 0.1098039215686275, 0.2431372549019608, 0.6]   # 991C3E
+            blue = [1, 0, 0.2745098039215686, 0.8]   # FF0046
+            # Crear una lista de los colores y las posiciones en el colormap
+            colors = [red, green, blue]
+            positions = [0, 0.5, 1]
+            # Crear el colormap continuo con transparencias
+            cmaps = LinearSegmentedColormap.from_list('my_colormap', colors, N=256)
+        if ColorOptionSel == 'FD':
+            hex_list2 = ['#5A9212', '#70BD0C', '#83E604']
+            hex_list = ['#121214', '#545454', '#9F9F9F']
+            colorviz = "#83E604"
+            # Definir los colores base con transparencias diferentes
+            red = [0.0705882352941176, 0.0705882352941176, 0.0784313725490196, 0.2]   # 121214
+            green = [0.3215686274509804, 0.5215686274509804, 0.0666666666666667, 0.5]   # 0059FF
+            blue = [0.5137254901960784, 0.9019607843137255, 0.0156862745098039, 0.70]   # 3A7FFF
+            # Crear una lista de los colores y las posiciones en el colormap
+            colors = [red, green, blue]
+            positions = [0, 0.5, 1]
+            # Crear el colormap continuo con transparencias
+            cmaps = LinearSegmentedColormap.from_list('my_colormap', colors, N=256)
+        #df = dfKK.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
+        #st.write(df)
+        if OptionPlotSel == 'Shots Map': 
+            dfKK = df
+            ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
+            ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(dfKK)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+            #Adding title
+            ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
+            ax9.axis("off")
+            ax9.set_xlim(0,10)
+            ax9.set_ylim(0,10)
+            ax9.scatter(2, 2.25, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+            ax9.text(2, -1.25, 'REMATES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+            #ax9.scatter(8, 5, s=320, color=colorviz, edgecolors='#FFFFFF', lw=1, ls='--', marker='h')
+            #ax9.text(8, -0.5, 'TERRITORIO\nRECURRENTE', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+            st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+        if OptionPlotSel == 'Shots Heatmap - Gaussian':
+            df.rename(columns={'X1':'Y1', 'Y1':'X1'}, inplace=True)
+            ax.scatter(df['X1'], df['Y1'], color = "#A4BACF", edgecolors="#FFF", alpha=0.5, s=100, zorder=10)
+            kdeplot = pitch.kdeplot(df.Y1, df.X1, ax=ax, cmap=get_continuous_cmap(hex_list), fill=True, levels=100, zorder=-1, alpha=0.5)
+            ax.set_ylim(52.3,110)
+            #ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKK)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+            #Adding colorbar
+            ax9 = fig.add_axes([0.14,0.13,0.20,0.07])
+            ax9.scatter(5.75,5, c=colorviz, marker='h', s=300, edgecolors='#121214', alpha=1.0)
+            ax9.scatter(4.00,5, c=colorviz, marker='h', s=300, edgecolors='#121214', alpha=0.7)
+            ax9.scatter(2.25,5, c=colorviz, marker='h', s=300, edgecolors='#121214', alpha=0.2)
+            ax9.text(4, 0.25, '-  REMATES  +',c='w', fontproperties=prop2, fontsize=10, ha='center')
+            ax9.axis("off")
+            ax9.set_xlim(0,10)
+            ax9.set_ylim(0,10)
+    
+            st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+
+        if OptionPlotSel == 'Shots Heatmap - Zones':
+            def soc_pitch_divisions(ax, grids = False):
+                '''
+                This function returns a vertical football pitch
+                divided in specific locations.
+            
+                Args:
+                    ax (obj): a matplotlib axes.
+                    grids (bool): should we draw the grid lines?
+                '''
+
+                pitch.draw(ax = ax)
+            
+                # Where we'll draw the lines
+                if grids:
+                    y_lines = [105 - 5.5*x for x in range(1,10)]
+                    x_lines = [68 - 6.8*x for x in range(1,10)]
+            
+                    for i in x_lines:
+                        ax.plot(
+                            [i, i], [45, 105], 
+                            color = "#8E8E8E", 
+                            ls = "--",
+                            lw = 0.3,
+                            zorder = -1)
+                    for j in y_lines:
+                        ax.plot(
+                            [68, 0], [j, j],
+                            color = "#8E8E8E", 
+                            ls = "--",
+                            lw = 0.3,
+                            zorder = -1)
+            
+                return ax
+            #df = df[df['e'] == 'Shot'].reset_index(drop=True)
+            df.rename(columns={'X1':'Y1', 'Y1':'X1'}, inplace=True)
+    
+            soc_pitch_divisions(ax, grids = True)
+    
+            #df.rename(columns={'X1':'Y1', 'Y1':'X1'}, inplace=True)
+            
+            # We define the cuts for our data (same as our pitch divisions)
+            # Only difference is we need to add the edges
+            
+            y_bins = [105] + [105 - 5.5*x for x in range(1,10)] + [45]
+            x_bins = [68] + [68 - 6.8*x for x in range(1,10)] + [0]
+            
+            x_bins.sort()
+            y_bins.sort()
+    
+            df["bins_x"] = pd.cut(df["X1"], bins = x_bins)            
+            df["bins_y"] = pd.cut(df["Y1"], bins = y_bins)
+    
+            #Group and sum xGOT by side and location
+            df_teams = (df.groupby(["bins_x", "bins_y"], observed = True)["Event"].count().reset_index()) 
+            # And we sort it based on the bins_y and bins_x columns
+            df_teams = (df_teams.sort_values(by = ["bins_y", "bins_x"]).reset_index(drop = True))
+            
+            example_df = df_teams
+            total_example = example_df["Event"].sum()
+            
+            # Compute share of xGOT as a % of total
+            example_df = (example_df.assign(COUNT_share = lambda x: x.Event/total_example))
+            # Scale data to the maximum value to get a nice color scale
+            example_df = (example_df.assign(COUNT_scaled = lambda x: x.COUNT_share/x.COUNT_share.max()))
+            counter = 0
+            for X, Y in zip(example_df["bins_x"], example_df["bins_y"]):
+                #This colours our bins
+                ax.fill_between(
+                    x = [X.left, X.right],
+                    y1 = Y.left,
+                    y2 = Y.right,
+                    color = colorviz,
+                    alpha = example_df["COUNT_scaled"].iloc[counter],
+                    zorder = -1,
+                    lw = 0
+                )
+                # Fancy annotations cuz why not?
+                if example_df['COUNT_share'].iloc[counter] > .005:
+                    text_ = ax.annotate(
+                        xy = (X.right - (X.right - X.left)/2, Y.right - (Y.right - Y.left)/2),
+                        text = f"{example_df['COUNT_share'].iloc[counter]:.0%}",
+                        fontproperties=prop2,
+                        ha = "center",
+                        va = "center",
+                        color = "w",
+                        size = 14,
+                        weight = "bold",
+                        zorder = 3
+                    )
+            
+                    text_.set_path_effects(
+                        [path_effects.Stroke(linewidth=0.75, foreground="k"), path_effects.Normal()]
+                    )
+                counter += 1
+            ax.set_ylim(52.3,110)
+            #ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKK)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+            #Adding colorbar
+            ax9 = fig.add_axes([0.14,0.135,0.20,0.07])
+            ax9.scatter(5.50,5, c=colorviz, marker='h', s=300, edgecolors='#121214', alpha=1.0)
+            ax9.scatter(4.00,5, c=colorviz, marker='h', s=300, edgecolors='#121214', alpha=0.7)
+            ax9.scatter(2.50,5, c=colorviz, marker='h', s=300, edgecolors='#121214', alpha=0.2)
+            ax9.text(4, 0.25, '-  REMATES  +',c='w', fontproperties=prop2, fontsize=10, ha='center')
+            ax9.axis("off")
+            ax9.set_xlim(0,10)
+            ax9.set_ylim(0,10)
+    
+            st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
