@@ -693,16 +693,15 @@ with st.container(border=True):
                 dfKK = df
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
     if PlotVizSelFDData == "Shots":
-        pltmnop01, pltmnop02, pltmnop03 = st.columns(3)
-        with pltmnop01:
+        with menuoptcon02:
             OptionPlot = ['Shots Map', 'Shots Heatmap - Zones', 'Shots Heatmap - Gaussian']
             OptionPlotSel = st.selectbox('Seleccionar tipo gráfico:', OptionPlot)
         if OptionPlotSel == 'Shots Map': 
-            with pltmnop03:
+            with menuoptcon03:
                 ColorOptionSel = st.color_picker('Selecciona color:', '#FF0046')
                 colorviz = ColorOptionSel
         else:
-            with pltmnop03:
+            with menuoptcon03:
                 SelOpt = ['WinStats', 'FD']
                 ColorOptionSel = st.selectbox('Selecciona color:', SelOpt)
 
