@@ -47,7 +47,6 @@ def esta_dentro_semicircunferencia(x, y):
 # Función para calcular la distancia euclidiana entre dos puntos
 def distancia_entre_puntos(x1, y1, x2, y2):
     return np.sqrt((x2 - x1)**2 + (y2 - y1)**2)
-
 #def to_excel(df):
     #output = BytesIO()
     #writer = pd.ExcelWriter(output, engine='xlsxwriter')
