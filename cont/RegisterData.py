@@ -35,6 +35,7 @@ from st_aggrid import AgGrid, JsCode, GridOptionsBuilder
 import os
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
 
 st.header("REGISTER DATA")
 
