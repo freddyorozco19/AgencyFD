@@ -35,17 +35,9 @@ from st_aggrid import AgGrid, JsCode, GridOptionsBuilder
 import os
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+
 st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
-
 st.header("REGISTER DATA")
-
-# Crear un DataFrame de ejemplo
-df = pd.DataFrame({
-    'Nombre': ['Juan', 'María', 'Pedro', 'Ana', 'Luis'],
-    'Edad': [25, 30, 35, 28, 40],
-    'Ciudad': ['Madrid', 'Barcelona', 'Sevilla', 'Valencia', 'Bilbao'],
-    'Salario': [30000, 35000, 40000, 32000, 38000]
-})
 
 # Función para crear el contenido del archivo Excel para una fila
 def to_excel(df):
@@ -61,35 +53,12 @@ def get_download_link(row):
     b64 = base64.b64encode(val).decode()
     return f'data:application/octet-stream;base64,{b64}'
 
-# Agregar la columna de enlaces de descarga al DataFrame
-df['Descargar'] = df.apply(lambda row: get_download_link(row), axis=1)
-# Configurar la columna de descarga como un hipervínculo
-column_config = {
-    "Descargar": st.column_config.LinkColumn(
-        "Descargar",
-        display_text="Descargar",
-        help="Haz clic para descargar los datos de esta fila",
-    )
-}
 
-# Mostrar el DataFrame con los enlaces de descarga
-st.dataframe(
-    df,
-    column_config=column_config,
-    hide_index=True,
-    use_container_width=True
-)
 
 # Botón para descargar todo el DataFrame
-st.write("Descargar todo el DataFrame:")
-full_excel_data = to_excel(df)
-st.download_button(
-    label="Descargar todo el DataFrame",
-    data=full_excel_data,
-    file_name="todos_los_datos.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    key="download_all"
-)
+#st.write("Descargar todo el DataFrame:")
+#full_excel_data = to_excel(df)
+#st.download_button(    label="Descargar todo el DataFrame",data=full_excel_data,file_name="todos_los_datos.xlsx",mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",key="download_all")
 
 df = pd.DataFrame(
         {"Site": "DuckDuckGo Google Bing".split(),
