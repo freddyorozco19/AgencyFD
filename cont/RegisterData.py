@@ -53,8 +53,6 @@ def get_download_link(row):
     b64 = base64.b64encode(val).decode()
     return f'data:application/octet-stream;base64,{b64}'
 
-
-
 # Botón para descargar todo el DataFrame
 #st.write("Descargar todo el DataFrame:")
 #full_excel_data = to_excel(df)
@@ -62,8 +60,7 @@ def get_download_link(row):
 
 df = pd.DataFrame(
         {"Site": "DuckDuckGo Google Bing".split(),
-        "URL": "https://duckduckgo.com/ https://www.google.com/ https://www.bing.com/".split()}
-    )
+        "URL": "https://duckduckgo.com/ https://www.google.com/ https://www.bing.com/".split()})
 
 gb = GridOptionsBuilder.from_dataframe(df)
 
