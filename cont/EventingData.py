@@ -770,7 +770,7 @@ with st.container(border=True):
             if OptionPlotSel == 'Shots Map': 
                 dfKK = df
                 ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
-                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(dfKK)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(dfKK)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 #Adding title
                 ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
                 ax9.axis("off")
