@@ -736,7 +736,7 @@ with st.container(border=True):
             #df = df[(df['EfectiveMinute'] >= EfectMinSel[0]) & (df['EfectiveMinute'] <= EfectMinSel[1])]
     
             df = df[(df['Event'] == 'Goals') | (df['Event'] == 'Shots on target') | (df['Event'] == 'Shots off target') | (df['Event'] == 'Blocks')].reset_index(drop=True)
-            df = df[df['MatchID'].isin(ListMatchSel)]
+            #df = df[df['MatchID'].isin(ListMatchSel)]
             dfKK = df
             if ColorOptionSel == 'WinStats':
                 hex_list2 = ['#121214', '#D81149', '#FF0050']
