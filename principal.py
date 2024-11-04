@@ -38,7 +38,7 @@ navigation_tree = {
     "Menu": [
         st.Page("cont/MatchAnalysis.py", title="Match Analysis", icon=":material/download:"),
         st.Page("cont/EventingData.py", title="Eventing Data", icon=":material/analytics:"),
-        st.Page("cont/SchedulerData.py", title="Scheduler Data", icon=":material/calendar:"),
+        st.Page("cont/SchedulerData.py", title="Scheduler Data", icon=":material/event:"),
         st.Page("cont/RegisterData.py", title="Register Data", icon=":material/leaderboard:")]
 }
 nav = st.navigation(navigation_tree, position="sidebar")
