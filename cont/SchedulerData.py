@@ -26,4 +26,6 @@ import altair as alt
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
+st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
 st.header("SCHEDULER DATA")
+st.divider()
