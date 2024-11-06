@@ -914,7 +914,7 @@ with st.container(border=True):
             OptionPlot = ['Passes Viz', 'Progressive Passes', 'Passes Into Final Third', 'Passes Into Penalty Area', 'Long Passes', 'Passes Into Half Spaces']
             OptionPlotSel = st.selectbox('Choose viz:', OptionPlot)
         with menuoptcon03:
-            EfectMinSel = st.slider('Seleccionar rango de partido:', 0, MaxAddMin, (0, MaxAddMin))
+            EfectMinSel = st.slider('Choose match time range:', 0, MaxAddMin, (0, MaxAddMin))
         with menuoptcon04:
                 MetOption = ['WinStats', 'FD']
                 MetOptionSel = st.selectbox('Choose color type:', MetOption)
