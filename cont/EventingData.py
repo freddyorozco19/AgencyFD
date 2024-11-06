@@ -230,7 +230,7 @@ with st.container(border=True):
             
             #Adding winstats logo
             ax53 = fig.add_axes([0.82, 0.14, 0.05, 0.05])
-            url53 = "https://i.postimg.cc/R0QjGByL/sZggzUM.png"
+            url53 = "Resources/Img/winstats_pplwhite.png"
             response = requests.get(url53)
             img = Image.open(BytesIO(response.content))
             ax53.imshow(img)
@@ -727,7 +727,7 @@ with st.container(border=True):
             
             #Adding winstats logo
             ax53 = fig.add_axes([0.82, 0.135, 0.05, 0.05])
-            url53 = "https://i.postimg.cc/R0QjGByL/sZggzUM.png"
+            url53 = "Resources/Img/winstats_pplwhite.png"
             response = requests.get(url53)
             img = Image.open(BytesIO(response.content))
             ax53.imshow(img)
@@ -951,7 +951,7 @@ with st.container(border=True):
             ax29.text(5, 2, 'Dirección campo de juego', fontproperties=prop3, c=(1,1,1,0.5), fontsize=10, ha='center')
             #Adding winstats logo
             ax53 = fig.add_axes([0.82, 0.14, 0.05, 0.05])
-            url53 = "https://i.postimg.cc/R0QjGByL/sZggzUM.png"
+            url53 = "Resources/Img/winstats_pplwhite.png"
             response = requests.get(url53)
             img = Image.open(BytesIO(response.content))
             ax53.imshow(img)
