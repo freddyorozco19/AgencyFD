@@ -32,7 +32,10 @@ from matplotlib.patches import Rectangle
 import math
 import io
 
+st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
 st.header("M Analysis")
+st.divider()
+
 df = pd.read_excel('Data/Players_Gral.xlsx')
 df['Categoria'] = df['Categoria'].astype(str)
 
