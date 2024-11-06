@@ -37,6 +37,7 @@ from googleapiclient.discovery import build
 
 st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
 st.header("REGISTER DATA")
+st.divider()
 
 # Función para crear el contenido del archivo Excel para una fila
 def to_excel(df):
