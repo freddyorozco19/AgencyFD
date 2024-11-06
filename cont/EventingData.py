@@ -910,13 +910,12 @@ with st.container(border=True):
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
 
     if PlotVizSelFDData == "Pases":
-        pltmnop11, pltmnop12, pltmnop13 = st.columns(3)
-        with pltmnop11:
+        with menuoptcon02:
             OptionPlot = ['Passes Viz', 'Progressive Passes', 'Passes Into Final Third', 'Passes Into Penalty Area', 'Long Passes', 'Passes Into Half Spaces']
-            OptionPlotSel = st.selectbox('Seleccionar tipo gráfico:', OptionPlot)
-        with pltmnop12:
+            OptionPlotSel = st.selectbox('Choose viz:', OptionPlot)
+        with menuoptcon03:
             EfectMinSel = st.slider('Seleccionar rango de partido:', 0, MaxAddMin, (0, MaxAddMin))
-        with pltmnop13:
+        with menuoptcon04:
                 MetOption = ['WinStats', 'FD']
                 MetOptionSel = st.selectbox('Choose color type:', MetOption)
         if MetOptionSel == 'WinStats':
