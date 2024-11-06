@@ -1044,7 +1044,8 @@ with st.container(border=True):
                 ax9.text(32.5, 0, 'PASES\nEXITOSOS', color=colorviz, fontproperties=prop2, ha='center', fontsize=9)
                 ax9.scatter(72.5, 15, marker='s', color='#9F9F9F', s=300)
                 ax9.text(72.5, 0, 'PASES\nFALLADOS', color='#9F9F9F', fontproperties=prop2, ha='center', fontsize=9)
-                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png") 
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+                
             if OptionPlotSel == 'Passes Into Final Third':
                 df = df[(df['Event'] == 'Successful passes') | (df['Event'] == 'Key Passes') | (df['Event'] == 'Assists') | (df['Event'] == 'Successful open play crosses') | (df['Event'] == 'Successful set play crosses') | (df['Event'] == 'Unsuccessful passes') | (df['Event'] == 'Unsuccessful open play crosses') | (df['Event'] == 'Unsuccessful set play crosses')].reset_index()
                 df = df[(df['X1'] <= 70) & (df['X2'] >= 70)].reset_index(drop=True)
@@ -1222,6 +1223,7 @@ with st.container(border=True):
                 ax9.scatter(72.5, 15, marker='s', color='#9F9F9F', s=300)
                 ax9.text(72.5, 0, 'PASES\nFALLADOS', color='#9F9F9F', fontproperties=prop2, ha='center', fontsize=9)
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+                
             if OptionPlotSel == 'Long Passes':
                 df = df[(df['Event'] == 'Successful passes') | (df['Event'] == 'Key Passes') | (df['Event'] == 'Assists') | (df['Event'] == 'Successful open play crosses') | (df['Event'] == 'Successful set play crosses') | (df['Event'] == 'Unsuccessful passes') | (df['Event'] == 'Unsuccessful open play crosses') | (df['Event'] == 'Unsuccessful set play crosses')].reset_index()
                 dfKKK = df.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
