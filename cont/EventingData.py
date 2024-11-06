@@ -1321,7 +1321,6 @@ with st.container(border=True):
             df = df[(df['EfectiveMinute'] >= EfectMinSel[0]) & (df['EfectiveMinute'] <= EfectMinSel[1])]
             dfKK = df
     
-                
             if OptionPlotSel == 'Defensive Actions Map':
                 
                 ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
@@ -1418,6 +1417,104 @@ with st.container(border=True):
                 ax9.text(8, -0.5, 'TERRITORIO\nRECURRENTE', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
                 dfKK = df
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+
+    if PlotVizSelFDData == "Possession":
+        with menuoptcon02:
+            OptionPlot = ['Dribbles Map', 'Dribbles Zones - Heatmap', 'Offensive Actions Map']
+            OptionPlotSel = st.selectbox('Seleccionar tipo gráfico:', OptionPlot)
+        with menuoptcon03:
+            EfectMinSel = st.slider('Seleccionar rango de partido:', 0, MaxAddMin, (0, MaxAddMin))
+        with menuoptcon04:
+            MetOption = ['WinStats', 'FD']
+            MetOptionSel = st.selectbox('Choose color type:', MetOption)
         
+        if MetOptionSel == 'WinStats':
+            hex_list2 = ['#121214', '#D81149', '#FF0050']
+            hex_list = ['#121214', '#545454', '#9F9F9F']
+            colorviz = "#FF0050"
+            # Definir los colores base con transparencias diferentes
+            red = [0.0705882352941176, 0.0705882352941176, 0.0784313725490196, 0]   # 121214
+            green = [0.6, 0.1098039215686275, 0.2431372549019608, 0.6]   # 991C3E
+            blue = [1, 0, 0.2745098039215686, 0.8]   # FF0046
+            # Crear una lista de los colores y las posiciones en el colormap
+            colors = [red, green, blue]
+            positions = [0, 0.5, 1]
+            # Crear el colormap continuo con transparencias
+            cmaps = LinearSegmentedColormap.from_list('my_colormap', colors, N=256)
+        if MetOptionSel == 'FD':
+            hex_list2 = ['#5A9212', '#70BD0C', '#83E604']
+            hex_list = ['#121214', '#545454', '#9F9F9F']
+            colorviz = "#83E604"
+            # Definir los colores base con transparencias diferentes
+            red = [0.0705882352941176, 0.0705882352941176, 0.0784313725490196, 0.2]   # 121214
+            green = [0.3215686274509804, 0.5215686274509804, 0.0666666666666667, 0.5]   # 0059FF
+            blue = [0.5137254901960784, 0.9019607843137255, 0.0156862745098039, 0.70]   # 3A7FFF
+            # Crear una lista de los colores y las posiciones en el colormap
+            colors = [red, green, blue]
+            positions = [0, 0.5, 1]
+            # Crear el colormap continuo con transparencias
+            cmaps = LinearSegmentedColormap.from_list('my_colormap', colors, N=256)
+        
+        pltmain11, pltmain12 = st.columns(2)
+        with pltmain11:
+            fig, ax = mplt.subplots(figsize=(8, 8), dpi = 800)
+            ax.axis("off")
+            fig.patch.set_visible(False)
+            pitch = Pitch(pitch_color='None', pitch_type='custom', line_zorder=1, linewidth=0.5, goal_type='box', pitch_length=105, pitch_width=68)
+            pitch.draw(ax=ax)
+            #Adding directon arrow
+            ax29 = fig.add_axes([0.368,0.22,0.3,0.05])
+            ax29.axis("off")
+            ax29.set_xlim(0,10)
+            ax29.set_ylim(0,10)
+            ax29.annotate('', xy=(2, 6), xytext=(8, 6), arrowprops=dict(arrowstyle='<-', ls= '-', lw = 1, color = (1,1,1,0.5)))
+            #ax29.annotate(s='', xy=(2, 5), xytext=(8, 5), arrowprops=dict(arrowstyle='<-', ls= '-', lw = 1, color = (1,1,1,0.5)))
+            ax29.text(5, 2, 'Dirección campo de juego', fontproperties=prop3, c=(1,1,1,0.5), fontsize=10, ha='center')
+            #Adding winstats logo
+            ax53 = fig.add_axes([0.82, 0.14, 0.05, 0.05])
+            url53 = "https://i.postimg.cc/R0QjGByL/sZggzUM.png"
+            response = requests.get(url53)
+            img = Image.open(BytesIO(response.content))
+            ax53.imshow(img)
+            ax53.axis("off")
+            ax53.set_facecolor("#000")
+            #st.dataframe(dfDOWN)
+            df = df[(df['EfectiveMinute'] >= EfectMinSel[0]) & (df['EfectiveMinute'] <= EfectMinSel[1])]
+            dfKK = df
+            df = df[(df['Event'] == 'Successful dribbles') | (df['Event'] == 'Unsuccessful dribbles') | (df['Event'] == 'Fouls won') | (df['Event'] == 'Fouls lost')].reset_index(drop=True)
+    
+            
+            if OptionPlotSel == 'Dribbles Map':
+                
+                ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
+                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " DRIBBLES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                #Adding title
+                ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                ax9.scatter(2, 4.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
+                ax9.text(2, 0, 'DRIBBLES', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+    
+            if OptionPlotSel == 'Dribbles Zones - Heatmap':
+                
+                path_eff = [path_effects.Stroke(linewidth=2, foreground='black'), path_effects.Normal()]
+                bin_statistic = pitch.bin_statistic_positional(df.X1, df.Y1, statistic='count', positional='full', normalize=True)
+                pitch.heatmap_positional(bin_statistic, ax=ax, cmap=cmaps, edgecolors='#524F50', linewidth=1)
+                pitch.scatter(df.X1, df.Y1, c='w', s=15, alpha=0.02, ax=ax)
+                labels = pitch.label_heatmap(bin_statistic, color='#f4edf0', fontsize=14, fontproperties=prop2, ax=ax, ha='center', va='center', str_format='{:.0%}', path_effects=path_eff)
+                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " " + MetricsOptionSel.upper() + "", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
+                ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
+                ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
+                ax9.scatter(3.25,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.2)
+                ax9.text(5, 0, '-  DRIBBLES  +', c='w', fontproperties=prop2, fontsize=9, ha='center')
+                ax9.axis("off")
+                ax9.set_xlim(0,10)
+                ax9.set_ylim(0,10)
+                dfKK = df
+                st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
         
         
