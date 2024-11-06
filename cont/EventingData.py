@@ -1487,7 +1487,7 @@ with st.container(border=True):
             if OptionPlotSel == 'Dribbles Map':
                 
                 ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
-                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " DRIBBLES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(df)) + " DRIBBLES", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 #Adding title
                 ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
                 ax9.axis("off")
@@ -1505,7 +1505,7 @@ with st.container(border=True):
                 pitch.heatmap_positional(bin_statistic, ax=ax, cmap=cmaps, edgecolors='#524F50', linewidth=1)
                 pitch.scatter(df.X1, df.Y1, c='w', s=15, alpha=0.02, ax=ax)
                 labels = pitch.label_heatmap(bin_statistic, color='#f4edf0', fontsize=14, fontproperties=prop2, ax=ax, ha='center', va='center', str_format='{:.0%}', path_effects=path_eff)
-                ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " " + MetricsOptionSel.upper() + "", c='w', fontsize=10, fontproperties=prop2, ha='center')
+                ax.text(52.5,70, "" + PlayersFDSel.upper() + " - " + str(len(df)) + " " + MetricsOptionSel.upper() + "", c='w', fontsize=10, fontproperties=prop2, ha='center')
                 ax9 = fig.add_axes([0.14,0.15,0.20,0.07])
                 ax9.scatter(6.75,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=1.0)
                 ax9.scatter(5.00,5, c=colorviz, marker='h', s=400, edgecolors='#121214', alpha=0.6)
