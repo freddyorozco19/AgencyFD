@@ -1264,10 +1264,28 @@ with st.container(border=True):
             hex_list2 = ['#121214', '#D81149', '#FF0050']
             hex_list = ['#121214', '#545454', '#9F9F9F']
             colorviz = "#FF0050"
+            # Definir los colores base con transparencias diferentes
+            red = [0.0705882352941176, 0.0705882352941176, 0.0784313725490196, 0]   # 121214
+            green = [0.6, 0.1098039215686275, 0.2431372549019608, 0.6]   # 991C3E
+            blue = [1, 0, 0.2745098039215686, 0.8]   # FF0046
+            # Crear una lista de los colores y las posiciones en el colormap
+            colors = [red, green, blue]
+            positions = [0, 0.5, 1]
+            cmaps = LinearSegmentedColormap.from_list('my_colormap', colors, N=256)
+
         if MetOptionSel == 'FD':
             hex_list2 = ['#5A9212', '#70BD0C', '#83E604']
             hex_list = ['#121214', '#545454', '#9F9F9F']
             colorviz = "#83E604"
+            # Definir los colores base con transparencias diferentes
+            red = [0.0705882352941176, 0.0705882352941176, 0.0784313725490196, 0.2]   # 121214
+            green = [0.3215686274509804, 0.5215686274509804, 0.0666666666666667, 0.5]   # 0059FF
+            blue = [0.5137254901960784, 0.9019607843137255, 0.0156862745098039, 0.70]   # 3A7FFF
+            # Crear una lista de los colores y las posiciones en el colormap
+            colors = [red, green, blue]
+            positions = [0, 0.5, 1]
+            # Crear el colormap continuo con transparencias
+            cmaps = LinearSegmentedColormap.from_list('my_colormap', colors, N=256)
         MetricsOption = ['Defensive Actions', 'Tackles won', 'Tackles lost', 'Defensive blocks', 'Interceptions', 'Clearances', 'Recoveries']
         MetricsOptionSel = st.selectbox('Choose metrics:', MetricsOption)
 
