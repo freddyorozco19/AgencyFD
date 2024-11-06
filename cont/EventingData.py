@@ -230,9 +230,8 @@ with st.container(border=True):
             
             #Adding winstats logo
             ax53 = fig.add_axes([0.82, 0.14, 0.05, 0.05])
-            url53 = "Resources/Img/winstats_pplwhite.png"
-            response = requests.get(url53)
-            img = Image.open(BytesIO(response.content))
+            img_path = "Resources/Img/winstats_pplwhite.png"
+            img = Image.open(img_path)
             ax53.imshow(img)
             ax53.axis("off")
             ax53.set_facecolor("#000")
