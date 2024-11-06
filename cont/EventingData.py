@@ -909,7 +909,7 @@ with st.container(border=True):
         
                 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
 
-    if PlotVizSelFDData == "Pases":
+    if PlotVizSelFDData == "Passes":
         with menuoptcon02:
             OptionPlot = ['Passes Viz', 'Progressive Passes', 'Passes Into Final Third', 'Passes Into Penalty Area', 'Long Passes', 'Passes Into Half Spaces']
             OptionPlotSel = st.selectbox('Choose viz:', OptionPlot)
