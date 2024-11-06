@@ -1268,7 +1268,13 @@ with st.container(border=True):
             hex_list2 = ['#5A9212', '#70BD0C', '#83E604']
             hex_list = ['#121214', '#545454', '#9F9F9F']
             colorviz = "#83E604"
+        MetricsOption = ['Defensive Actions', 'Tackles won', 'Tackles lost', 'Defensive blocks', 'Interceptions', 'Clearances', 'Recoveries']
+        MetricsOptionSel = st.selectbox('Choose metrics:', MetricsOption)
 
+        if MetricsOptionSel == 'Defensive Actions':
+            df = df[(df['Event'] == 'Tackles won') | (df['Event'] == 'Tackles lost') | (df['Event'] == 'Defensive blocks') | (df['Event'] == 'Interceptions') | (df['Event'] == 'Clearances') | (df['Event'] == 'Recoveries')].reset_index(drop=True)
+        else:
+            df = df[df['Event'] == MetricsOptionSel].reset_index(drop=True)
 
         pltmain11, pltmain12 = st.columns(2)
         with pltmain11:
