@@ -53,11 +53,6 @@ def get_download_link(row):
     b64 = base64.b64encode(val).decode()
     return f'data:application/octet-stream;base64,{b64}'
 
-# Botón para descargar todo el DataFrame
-#st.write("Descargar todo el DataFrame:")
-#full_excel_data = to_excel(df)
-#st.download_button(    label="Descargar todo el DataFrame",data=full_excel_data,file_name="todos_los_datos.xlsx",mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",key="download_all")
-
 df = pd.DataFrame(
         {"Site": "DuckDuckGo Google Bing".split(),
         "URL": "https://duckduckgo.com/ https://www.google.com/ https://www.bing.com/".split()})
