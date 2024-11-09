@@ -71,7 +71,6 @@ AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
 
 # Define los alcances necesarios para la API de Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-
 def read_from_sheets(spreadsheet_id, range_name):
     """Lee datos de Google Sheets y devuelve un DataFrame usando una cuenta de servicio."""
     creds = Credentials.from_service_account_file('cont/winstatspilot.json', scopes=SCOPES)
