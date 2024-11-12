@@ -32,7 +32,7 @@ import math
 import io
 
 st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
-st.header("M ANALYSIS")
+st.header("MATCH ANALYSIS")
 st.divider()
 
 df = pd.read_excel('Data/Players_Gral.xlsx')
