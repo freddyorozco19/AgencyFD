@@ -74,7 +74,6 @@ def read_from_sheets(spreadsheet_id, range_name):
     """Lee datos de Google Sheets y devuelve un DataFrame usando una cuenta de servicio."""
     creds = Credentials.from_service_account_file('cont/winstatspilot.json', scopes=SCOPES)
     service = build('sheets', 'v4', credentials=creds)
-    
     try:
         result = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range_name).execute()
         values = result.get('values', [])
