@@ -30,7 +30,6 @@ st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=Tru
 st.header("SCHEDULER DATA")
 st.divider()
 
-
 # Define los alcances necesarios para la API de Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 def read_from_sheets(spreadsheet_id, range_name):
