@@ -92,13 +92,11 @@ column_config = {
     "Register": st.column_config.LinkColumn(
         "Register",
         display_text="Register Data",
-        help="Haz click para observar los registros"
-    ),
+        help="Haz click para observar los registros"),
     "Source": st.column_config.LinkColumn(
         "Source",
         display_text="Source Data",
-        help="Haz click para descargar la información"
-    )
+        help="Haz click para descargar la información")
 }
 st.dataframe(df2, column_config=column_config)
 st.link_button("Source", "https://t.ly/PQm_h")
