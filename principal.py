@@ -34,6 +34,7 @@ import math
 st.set_page_config(layout="wide")
 st.logo("Resources/Img/FootballDivisionWorldwide2.png",icon_image="Resources/Img/FootballDivisionWorldwide2.png")
 
+
 navigation_tree = {
     "Menu": [
         st.Page("cont/MatchAnalysis.py", title="Match Analysis", icon=":material/download:"),
