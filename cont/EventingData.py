@@ -46,9 +46,9 @@ def esta_dentro_semicircunferencia(x, y):
     return distancia_centro <= radio_umbral
 
 # Función para calcular la distancia euclidiana entre dos puntos
-
 def distancia_entre_puntos(x1, y1, x2, y2):
     return np.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    
 #def to_excel(df):
     #output = BytesIO()
     #writer = pd.ExcelWriter(output, engine='xlsxwriter')
@@ -132,7 +132,7 @@ def read_from_sheets(spreadsheet_id, range_name):
         print(f"Error: {e}")
         return None
 
-#####################################################################################################################################################
+############################################################################################################################################################################################################################
 
 font_path = 'Resources/keymer-bold.otf'  # Your font path goes here
 font_manager.fontManager.addfont(font_path)
