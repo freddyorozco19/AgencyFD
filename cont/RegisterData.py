@@ -56,7 +56,6 @@ def get_download_link(row):
 df = pd.DataFrame(
         {"Site": "DuckDuckGo Google Bing".split(),
         "URL": "https://duckduckgo.com/ https://www.google.com/ https://www.bing.com/".split()})
-
 gb = GridOptionsBuilder.from_dataframe(df)
 gb.configure_column("URL",
                     headerName="URL",
