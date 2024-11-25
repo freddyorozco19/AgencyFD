@@ -32,7 +32,6 @@ import math
 
 ############################################################################################################################################################################################################################
 st.set_page_config(layout="wide")
-
 st.logo("Resources/Img/FootballDivisionWorldwide2.png",icon_image="Resources/Img/FootballDivisionWorldwide2.png")
 
 navigation_tree = {
@@ -43,5 +42,7 @@ navigation_tree = {
         st.Page("cont/RegisterData.py", title="Register Data", icon=":material/leaderboard:")]
 }
 nav = st.navigation(navigation_tree, position="sidebar")
+
 nav.run()
+
 st.sidebar.link_button("Source", "https://t.ly/r78Av")
