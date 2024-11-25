@@ -32,7 +32,7 @@ st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=Tru
 st.header("SCHEDULER DATA")
 st.divider()
 
-with c[1].expander('Menu', True):
+with expander('Menu', True):
     sac.menu(
         items=[
             sac.MenuItem('home', 'house-fill'),
