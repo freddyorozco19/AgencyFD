@@ -48,7 +48,7 @@ with st.sidebar:
         sac.MenuItem('disabled', disabled=True),
         sac.MenuItem(type='divider'),
         sac.MenuItem('link', type='group', children=[
-            sac.MenuItem('antd-menu', icon='heart-fill', href='https://ant.design/components/menu#menu'),
+            sac.MenuItem('antd-menu', icon='heart-fill', href='cont/MatchAnalysis.py'),
             sac.MenuItem('bootstrap-icon', icon='bootstrap-fill', href='https://icons.getbootstrap.com/'),
         ]),
     ], open_all=True)
