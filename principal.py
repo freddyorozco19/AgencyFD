@@ -34,7 +34,7 @@ import streamlit_antd_components as sac
 ############################################################################################################################################################################################################################
 st.set_page_config(layout="wide")
 st.logo("Resources/Img/FootballDivisionWorldwide2.png",icon_image="Resources/Img/FootballDivisionWorldwide2.png")
-with sidebar:
+with st.sidebar:
     sac.menu([
         sac.MenuItem('home', icon='house-fill', tag=[sac.Tag('Tag1', color='green'), sac.Tag('Tag2', 'red')]),
         sac.MenuItem('products', icon='box-fill', children=[
