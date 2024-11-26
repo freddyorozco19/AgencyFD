@@ -1,3 +1,6 @@
+[client]
+showSidebarNavigation = false
+
 [theme]
 primaryColor = "#FF0046"
 backgroundColor = "#151517"
