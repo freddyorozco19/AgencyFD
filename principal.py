@@ -45,5 +45,4 @@ navigation_tree = {
 nav = st.navigation(navigation_tree, position="sidebar")
 
 nav.run()
-
 st.sidebar.link_button("Source", "https://t.ly/r78Av")
