@@ -4,6 +4,7 @@ Created on Sat Apr  1 03:14:41 2023
 @author: Freddy J. Orozco R.
 @Powered: WinStats.
 """
+
 import streamlit as st
 import datetime
 import base64
@@ -64,6 +65,7 @@ gb.configure_column("URL",
                             return '<a href=' + params.value + '> 🖱️ </a>'
                             }
                         """))
+
 gridOptions = gb.build()
 AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
 # Define los alcances necesarios para la API de Google Sheets
