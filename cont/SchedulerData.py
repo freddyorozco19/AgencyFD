@@ -55,7 +55,6 @@ def read_from_sheets(spreadsheet_id, range_name):
     except Exception as e:
         print(f"Error: {e}")
         return None
-
 # Ejemplo de uso
 spreadsheet_id = '1SZx0fB0BZQJruQ-usmVNu43rMP2z7RNKsP3FhEdI9Uk'  # Reemplaza con el ID de tu hoja de cálculo
 range_name = 'Hoja 3!A1:Z1000'  # Reemplaza con el rango que deseas leer
