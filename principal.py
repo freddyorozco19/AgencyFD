@@ -4,7 +4,6 @@ Created on Sat Apr  1 03:14:41 2023
 @author: Freddy J. Orozco R.
 @Powered: WinStats.
 """
-
 import streamlit as st
 import datetime
 import base64
@@ -30,9 +29,7 @@ import requests
 from matplotlib.patches import Rectangle
 import math
 import streamlit_antd_components as sac
-
 ############################################################################################################################################################################################################################
-
 st.set_page_config(layout="wide")
 st.logo("Resources/Img/FootballDivisionWorldwide2.png",icon_image="Resources/Img/FootballDivisionWorldwide2.png")
 navigation_tree = {
