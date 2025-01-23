@@ -61,7 +61,7 @@ def read_from_sheets(spreadsheet_id, range_name):
         return None
 # Ejemplo de uso
 spreadsheet_id = '1SZx0fB0BZQJruQ-usmVNu43rMP2z7RNKsP3FhEdI9Uk'  # Reemplaza con el ID de tu hoja de cálculo
-range_name = 'Hoja 1!A1:Z1000'  # Reemplaza con el rango que deseas leer
+range_name = 'Hoja 4!A1:Z1000'  # Reemplaza con el rango que deseas leer
 
 df = read_from_sheets(spreadsheet_id, range_name)
 st.dataframe(df)
